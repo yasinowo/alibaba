@@ -25,13 +25,13 @@ class HomePage extends StatelessWidget {
     ];
     List<Map<String, String>> magPost = [
       {
-        'image': 'assets/images/image1.png',
+        'image': 'assets/images/mag1.png',
         'title': 'جاهای دیدنی ارمنستان; تاریخ را ورق بزنید',
         // 'description':
         //     'جامع ترین راهنمای گردش و تفریح در شهرهای پرطرفدار به صورت رایگان',
       },
       {
-        'image': 'assets/images/image1.png',
+        'image': 'assets/images/mag2.png',
         'title': 'بهترین جاهای دیدنی که نباید انهارا از دست داد',
         // 'description': 'درباره هرچیزی که مربوط به سفر ، ماجراجویی و تفریح باشه',
       },
@@ -234,7 +234,93 @@ class HomePage extends StatelessWidget {
             ),
           ),
           readTravleList(magPost),
+          SliverToBoxAdapter(child: SizedBox(height: 10)),
+          SliverToBoxAdapter(child: Divider()),
+          SliverToBoxAdapter(child: SizedBox(height: 40)),
+          footerIcon(),
+          SliverToBoxAdapter(child: SizedBox(height: 40)),
         ],
+      ),
+    );
+  }
+
+  SliverPadding footerIcon() {
+    return SliverPadding(
+      padding: EdgeInsets.symmetric(horizontal: 10),
+      sliver: SliverToBoxAdapter(
+        child: Directionality(
+          textDirection: TextDirection.rtl,
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  SizedBox(
+                    width: 70,
+                    height: 70,
+                    child: Image.asset('assets/icons/ticket.png'),
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('رتبه یک سفر', style: MyFonts.titleSmall),
+                      Text(
+                        'معتبرترین عرضه کننده محصولات گردشگری در ایران',
+                        style: MyFonts.displaySmall.copyWith(
+                          color: Colors.blueGrey,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              SizedBox(height: 10),
+              Row(
+                children: [
+                  SizedBox(
+                    width: 70,
+                    height: 70,
+                    child: Image.asset('assets/icons/platform.png'),
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('رتبه یک سفر', style: MyFonts.titleSmall),
+                      Text(
+                        'ارائه تمامی خدمات سفر(پرواز،قطار،اتوبوس،هتل و تور)',
+                        style: MyFonts.displaySmall.copyWith(
+                          color: Colors.blueGrey,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              SizedBox(height: 10),
+
+              Row(
+                children: [
+                  SizedBox(
+                    width: 70,
+                    height: 70,
+                    child: Image.asset('assets/icons/chat.png'),
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('رتبه یک سفر', style: MyFonts.titleSmall),
+                      Text(
+                        'پشتیبانی و همراهی 24 ساعته در تمامی مراحل سفر',
+                        style: MyFonts.displaySmall.copyWith(
+                          color: Colors.blueGrey,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
@@ -293,7 +379,7 @@ class HomePage extends StatelessWidget {
                                   ),
                                   textAlign: TextAlign.right,
                                 )
-                                : SizedBox(height: 0),
+                                : Text(''),
                           ],
                         ),
                       ],
