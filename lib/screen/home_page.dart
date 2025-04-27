@@ -1,4 +1,5 @@
 import 'package:alibaba/components/banner.dart';
+import 'package:alibaba/components/foter.dart';
 import 'package:alibaba/theme/font.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -239,6 +240,7 @@ class HomePage extends StatelessWidget {
           SliverToBoxAdapter(child: SizedBox(height: 40)),
           footerIcon(),
           SliverToBoxAdapter(child: SizedBox(height: 40)),
+          SliverToBoxAdapter(child: FooterSection()),
         ],
       ),
     );

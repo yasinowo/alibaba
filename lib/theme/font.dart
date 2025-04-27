@@ -15,7 +15,14 @@ class MyFonts {
   static const TextStyle displaySmall = TextStyle(
     fontSize: 14,
     fontWeight: FontWeight.bold,
+    height: 0,
   );
+  static const TextStyle tagSmall = TextStyle(
+    fontSize: 12,
+    fontWeight: FontWeight.bold,
+    height: 0,
+  );
+
   static const TextStyle bodyMedium = TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.bold,
