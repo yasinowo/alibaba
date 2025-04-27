@@ -1,5 +1,7 @@
+import 'package:alibaba/components/banner.dart';
 import 'package:alibaba/theme/font.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -176,22 +178,134 @@ class HomePage extends StatelessWidget {
               ),
             ),
           ),
+          otherServicesContent(),
+          SliverToBoxAdapter(child: SizedBox(height: 15)),
+          BannerSlider(
+            assetImagePaths: [
+              'assets/images/banner1.png',
+              'assets/images/banner2.png',
+            ],
+          ),
           SliverPadding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
             sliver: SliverToBoxAdapter(
-              child: Row(
-                mainAxisAlignment:
-                    MainAxisAlignment.spaceAround, // تنظیم نحوه چیدمان افقی
-                children: <Widget>[
-                  Icon(Icons.home, size: 30.0),
-                  Icon(Icons.search, size: 30.0),
-                  Icon(Icons.favorite, size: 30.0),
-                  Icon(Icons.settings, size: 30.0),
-                ],
+              child: Text(
+                'سفر را بخوانید و بشنوید',
+                textAlign: TextAlign.right,
+                style: MyFonts.titleMedium,
               ),
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  SliverPadding otherServicesContent() {
+    return SliverPadding(
+      padding: const EdgeInsets.symmetric(horizontal: 0),
+      sliver: SliverToBoxAdapter(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            SizedBox(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.grey.withAlpha(50),
+                      borderRadius: BorderRadius.all(Radius.circular(12)),
+                    ),
+                    width: 60.0,
+                    height: 60.0,
+                    child: Center(
+                      child: Image.asset(
+                        'assets/icons/travl.png',
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 8.0),
+                  Text('تور گردشگری', style: MyFonts.displaySmall),
+                ],
+              ),
+            ),
+            SizedBox(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.grey.withAlpha(50),
+                      borderRadius: BorderRadius.all(Radius.circular(12)),
+                    ),
+                    width: 60.0,
+                    height: 60.0,
+                    child: Center(
+                      child: Image.asset(
+                        'assets/icons/viza.png',
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 8.0),
+                  Text('ویزای سفر', style: MyFonts.displaySmall),
+                ],
+              ),
+            ),
+            SizedBox(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.grey.withAlpha(50),
+                      borderRadius: BorderRadius.all(Radius.circular(12)),
+                    ),
+                    width: 60.0,
+                    height: 60.0,
+                    child: Center(
+                      child: SvgPicture.asset(
+                        'assets/icons/cart.svg',
+                        semanticsLabel: 'Dart Logo',
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 8.0),
+                  Text('سفر اقتصادی', style: MyFonts.displaySmall),
+                ],
+              ),
+            ),
+            SizedBox(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.grey.withAlpha(50),
+                      borderRadius: BorderRadius.all(Radius.circular(12)),
+                    ),
+                    width: 60.0,
+                    height: 60.0,
+                    child: Center(
+                      child: Image.asset(
+                        'assets/icons/travl.png',
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 8.0),
+                  Text('سفر کارت\n سازمانی', style: MyFonts.displaySmall),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
