@@ -6,66 +6,156 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: CustomScrollView(
-          slivers: [
-            SliverAppBar(
-              pinned: true,
-              expandedHeight: 150.0,
-              backgroundColor: Colors.yellow,
-              flexibleSpace: LayoutBuilder(
-                builder: (BuildContext context, BoxConstraints constraints) {
-                  // چک می‌کنیم که اپ‌بار کوچیک شده یا بزرگه
-                  var top = constraints.biggest.height;
-                  bool isCollapsed =
-                      top <=
-                      kToolbarHeight +
-                          20; // اگه ارتفاع نزدیک اپ‌بار عادی شد یعنی اسکرول شده
-
-                  return Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      if (!isCollapsed) ...[
-                        // حالت بزرگ: ایکون + متن
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            buildIconWithText(Icons.train, "قطار"),
-                            buildIconWithText(Icons.flight, "پرواز"),
-                            buildIconWithText(Icons.hotel, "هتل"),
-                            buildIconWithText(Icons.directions_bus, "اتوبوس"),
-                            buildIconWithText(Icons.tour, "تور"),
-                            buildIconWithText(Icons.home, "ویلا و اقامتگاه"),
-                          ],
-                        ),
-                      ] else ...[
-                        // حالت کوچک: فقط ایکون
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Icon(Icons.train),
-                            Icon(Icons.flight),
-                            Icon(Icons.hotel),
-                            Icon(Icons.directions_bus),
-                            Icon(Icons.tour),
-                            Icon(Icons.home),
-                          ],
-                        ),
-                      ],
-                    ],
-                  );
-                },
+      body: CustomScrollView(
+        slivers: [
+          SliverAppBar(
+            elevation: 0,
+            pinned: true,
+            expandedHeight: 190,
+            collapsedHeight: kToolbarHeight + 8,
+            flexibleSpace: FlexibleSpaceBar(
+              collapseMode: CollapseMode.none,
+              centerTitle: true,
+              titlePadding: EdgeInsetsDirectional.only(
+                start: 20.0,
+                end: 20.0,
+                top: 12.0,
+                bottom: 12.0,
+              ),
+              title: SafeArea(
+                child: Column(
+                  children: [
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    //   children: [
+                    //     CircleAvatar(radius: 16),
+                    //     Row(
+                    //       children: [
+                    //         Container(
+                    //           decoration: BoxDecoration(
+                    //             color: Colors.white10,
+                    //             borderRadius: BorderRadius.all(
+                    //               Radius.circular(12),
+                    //             ),
+                    //           ),
+                    //           padding: EdgeInsets.all(8.0),
+                    //           child: Icon(Icons.person),
+                    //         ),
+                    //         SizedBox(width: 8),
+                    //         Container(
+                    //           decoration: BoxDecoration(
+                    //             color: Colors.white10,
+                    //             borderRadius: BorderRadius.all(
+                    //               Radius.circular(12),
+                    //             ),
+                    //           ),
+                    //           padding: EdgeInsets.all(8.0),
+                    //           child: Icon(Icons.menu),
+                    //         ),
+                    //         SizedBox(width: 8),
+                    //         Container(
+                    //           decoration: BoxDecoration(
+                    //             color: Colors.white10,
+                    //             borderRadius: BorderRadius.all(
+                    //               Radius.circular(12),
+                    //             ),
+                    //           ),
+                    //           padding: EdgeInsets.all(8.0),
+                    //           child: Icon(Icons.message),
+                    //         ),
+                    //       ],
+                    //     ),
+                    //   ],
+                    // ),
+                  ],
+                ),
+              ),
+              background: SafeArea(
+                child: Stack(
+                  alignment: Alignment.bottomCenter,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        left: 20,
+                        top: 30,
+                        bottom: 24,
+                      ),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          CircleAvatar(radius: 20),
+                          SizedBox(width: 12),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                children: [
+                                  Container(
+                                    decoration: BoxDecoration(
+                                      color: Colors.white10,
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(12),
+                                      ),
+                                    ),
+                                    padding: EdgeInsets.symmetric(
+                                      horizontal: 34,
+                                      vertical: 12,
+                                    ),
+                                    child: Icon(Icons.menu),
+                                  ),
+                                  SizedBox(width: 4),
+                                  Container(
+                                    decoration: BoxDecoration(
+                                      color: Colors.white10,
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(12),
+                                      ),
+                                    ),
+                                    padding: EdgeInsets.symmetric(
+                                      horizontal: 34,
+                                      vertical: 12,
+                                    ),
+                                    child: Icon(Icons.person),
+                                  ),
+                                  SizedBox(width: 4),
+                                  Container(
+                                    decoration: BoxDecoration(
+                                      color: Colors.white10,
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(12),
+                                      ),
+                                    ),
+                                    padding: EdgeInsets.symmetric(
+                                      horizontal: 34,
+                                      vertical: 12,
+                                    ),
+                                    child: Icon(Icons.message),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
-            SliverList(
-              delegate: SliverChildListDelegate([
-                // ادامه‌ی بدنه صفحه (بقیه آیتم‌ها و محتواها)
-              ]),
-            ),
-          ],
-        ),
-
-        // تابع کمکی برای آیکون + متن
+          ),
+          SliverList(
+            delegate: SliverChildBuilderDelegate((
+              BuildContext context,
+              int index,
+            ) {
+              return Container(
+                color: index.isOdd ? Colors.white : Colors.black12,
+                height: 100.0,
+                child: Center(child: Text('$index', textScaleFactor: 5)),
+              );
+            }, childCount: 20),
+          ),
+        ],
       ),
     );
   }
