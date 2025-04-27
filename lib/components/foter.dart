@@ -52,7 +52,7 @@ class _FooterSectionState extends State<FooterSection> {
       child: ExpansionTile(
         tilePadding: EdgeInsets.symmetric(horizontal: 16),
         childrenPadding: EdgeInsets.symmetric(horizontal: 16),
-        title: Text(title, style: MyFonts.bodyMedium),
+        title: Text(title, style: MyFonts.titleSmall),
         children:
             children
                 .map(

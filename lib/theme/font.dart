@@ -25,9 +25,9 @@ class MyFonts {
   );
 
   static const TextStyle bodyMedium = TextStyle(
-    fontSize: 16,
+    fontSize: 15,
     fontWeight: FontWeight.bold,
-    fontFamily: 'Ykb',
+    fontFamily: 'Yk',
   );
 
   // static const TextStyle titleSmall = TextStyle(fontSize: 25, fontFamily: 'PR');
