@@ -10,6 +10,32 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     double _bottomContainerHeight = 80.0; // ارتفاع کانتینر میانی
     var theme = Theme.of(context);
+    List<Map<String, String>> travelList = [
+      {
+        'image': 'assets/images/image1.png',
+        'title': 'مجموعه کتاب سفر علی بابا',
+        'description':
+            'جامع ترین راهنمای گردش و تفریح در شهرهای پرطرفدار به صورت رایگان',
+      },
+      {
+        'image': 'assets/images/image1.png',
+        'title': 'پادکست رادیو دور دنیا',
+        'description': 'درباره هرچیزی که مربوط به سفر ، ماجراجویی و تفریح باشه',
+      },
+    ];
+    List<Map<String, String>> magPost = [
+      {
+        'image': 'assets/images/image1.png',
+        'title': 'جاهای دیدنی ارمنستان; تاریخ را ورق بزنید',
+        // 'description':
+        //     'جامع ترین راهنمای گردش و تفریح در شهرهای پرطرفدار به صورت رایگان',
+      },
+      {
+        'image': 'assets/images/image1.png',
+        'title': 'بهترین جاهای دیدنی که نباید انهارا از دست داد',
+        // 'description': 'درباره هرچیزی که مربوط به سفر ، ماجراجویی و تفریح باشه',
+      },
+    ];
     return Scaffold(
       body: CustomScrollView(
         slivers: [
@@ -196,94 +222,88 @@ class HomePage extends StatelessWidget {
               ),
             ),
           ),
-
-          SliverToBoxAdapter(
-            child: SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Directionality(
-                textDirection: TextDirection.rtl,
-                child: Padding(
-                  padding: EdgeInsets.only(right: 10),
-                  child: Row(
-                    children: <Widget>[
-                      Container(
-                        width: 250,
-                        height: 200,
-                        decoration: BoxDecoration(
-                          border: Border.all(color: Colors.grey, width: 1),
-                          borderRadius: BorderRadius.all(Radius.circular(10)),
-                        ),
-                        child: Column(
-                          crossAxisAlignment:
-                              CrossAxisAlignment
-                                  .end, // تراز کلی Column را به راست تغییر می‌دهیم
-                          children: [
-                            Row(
-                              mainAxisAlignment:
-                                  MainAxisAlignment
-                                      .spaceBetween, // فضا بین تصویر و متن‌ها
-                              crossAxisAlignment:
-                                  CrossAxisAlignment
-                                      .start, // تراز عمودی را از بالا شروع می‌کنیم
-                              children: [
-                                SizedBox(
-                                  width:
-                                      100, // عرض دلخواه برای تصویر (تغییر دهید)
-                                  height:
-                                      100, // ارتفاع دلخواه برای تصویر (تغییر دهید)
-                                  child: Image.asset(
-                                    'assets/images/image1.png',
-                                    fit: BoxFit.fitWidth,
-                                  ),
-                                ),
-                                Expanded(
-                                  // برای اشغال فضای باقی مانده توسط متن‌ها
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment
-                                            .end, // تراز متن‌ها به راست
-                                    children: [
-                                      Text(
-                                        'مجموعه کتاب سفر علی بابا',
-                                        style: MyFonts.titleMedium,
-                                        textAlign:
-                                            TextAlign
-                                                .right, // اطمینان از تراز متن به راست
-                                      ),
-                                      Text(
-                                        softWrap: true,
-                                        'جامع ترین راهنمای گردش و تفریح در شهرهای پرطرفدار به صورت رایگان',
-                                        style: MyFonts.bodyMedium.copyWith(
-                                          color: Colors.blueGrey,
-                                        ),
-                                        textAlign:
-                                            TextAlign
-                                                .right, // اطمینان از تراز متن به راست
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                            // می‌توانید ویجت‌های دیگری را در زیر Row (تصویر و متن‌ها) در Column قرار دهید
-                          ],
-                        ),
-                      ),
-                      Container(
-                        width: 300.0,
-                        height: 150.0,
-                        color: Colors.green,
-                        margin: const EdgeInsets.all(8.0),
-                        child: const Center(child: Text('کانتینر دوم')),
-                      ),
-                      // می‌توانید کانتینرهای بیشتری را در اینجا اضافه کنید
-                    ],
-                  ),
-                ),
+          readTravleList(travelList),
+          SliverPadding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            sliver: SliverToBoxAdapter(
+              child: Text(
+                'پست های مگ',
+                textAlign: TextAlign.right,
+                style: MyFonts.titleMedium,
               ),
             ),
           ),
+          readTravleList(magPost),
         ],
+      ),
+    );
+  }
+
+  /////////////////////////////////////////////////////////////////////////////
+  SliverToBoxAdapter readTravleList(List<Map<String, String>> travelData) {
+    return SliverToBoxAdapter(
+      child: SizedBox(
+        // برای تعیین ارتفاع کلی لیست افقی
+        height: 200, // ارتفاع مشابه کانتینرها
+        child: Directionality(
+          textDirection: TextDirection.rtl,
+          child: Padding(
+            padding: EdgeInsets.only(right: 10),
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: travelData.length,
+              itemBuilder: (BuildContext context, int index) {
+                final item = travelData[index];
+                return Padding(
+                  padding: const EdgeInsets.only(
+                    left: 15.0,
+                  ), // فاصله بین آیتم‌ها
+                  child: Container(
+                    width: 250,
+                    height: 200,
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.grey, width: 1),
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                    ),
+                    padding: EdgeInsets.only(right: 5),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        SizedBox(
+                          width: 100,
+                          height: 100,
+                          child: Image.asset(item['image']!, fit: BoxFit.cover),
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Text(
+                              item['title']!,
+                              style: MyFonts.titleMedium,
+                              textAlign: TextAlign.right,
+                            ),
+                            (item['description'] != null)
+                                ? Text(
+                                  softWrap: true,
+                                  item['description']!,
+                                  style: MyFonts.bodyMedium.copyWith(
+                                    color: Colors.blueGrey,
+                                  ),
+                                  textAlign: TextAlign.right,
+                                )
+                                : SizedBox(height: 0),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
+        ),
       ),
     );
   }
@@ -348,20 +368,17 @@ class HomePage extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
-                  Container(
-                    decoration: BoxDecoration(
-                      color: Colors.grey.withAlpha(50),
-                      borderRadius: BorderRadius.all(Radius.circular(12)),
-                    ),
-                    width: 60.0,
-                    height: 60.0,
-                    child: Center(
-                      child: SvgPicture.asset(
-                        'assets/icons/cart.svg',
-                        semanticsLabel: 'Dart Logo',
-                      ),
-                    ),
-                  ),
+                  // Container(
+                  //   decoration: BoxDecoration(
+                  //     color: Colors.grey.withAlpha(50),
+                  //     borderRadius: BorderRadius.all(Radius.circular(12)),
+                  //   ),
+                  //   width: 60.0,
+                  //   height: 60.0,
+                  //   child: Center(
+                  //     child: SvgPicture.asset('assets/icons/cart.svg'),
+                  //   ),
+                  // ),
                   SizedBox(height: 8.0),
                   Text('سفر اقتصادی', style: MyFonts.displaySmall),
                 ],
