@@ -41,57 +41,60 @@ class _BannerSliderState extends State<BannerSlider> {
     return SliverPadding(
       padding: EdgeInsets.symmetric(horizontal: 10),
       sliver: SliverToBoxAdapter(
-        child: Column(
-          children: [
-            SizedBox(
-              height: 200.0, // ارتفاع دلخواه بنر اسلایدر
-              child: PageView.builder(
-                controller: _pageController,
-                itemCount: null,
-                onPageChanged: (int page) {
-                  setState(() {
-                    _currentPage =
-                        page %
-                        widget.assetImagePaths.length; // برای اندیکاتورها
-                  });
-                },
-                itemBuilder: (BuildContext context, int index) {
-                  final int realIndex = index % widget.assetImagePaths.length;
-                  return ClipRRect(
-                    borderRadius: BorderRadius.circular(8.0),
-                    child: Image.asset(
-                      widget.assetImagePaths[realIndex],
-                      fit: BoxFit.fitHeight,
-                      width: double.infinity,
-                    ),
-                  );
-                },
-              ),
-            ),
-            if (widget.assetImagePaths.length > 1)
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children:
-                      widget.assetImagePaths.map((path) {
-                        int index = widget.assetImagePaths.indexOf(path);
-                        return Container(
-                          width: 8.0,
-                          height: 8.0,
-                          margin: EdgeInsets.symmetric(horizontal: 4.0),
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color:
-                                _currentPage == index
-                                    ? Theme.of(context).primaryColor
-                                    : Colors.grey,
-                          ),
-                        );
-                      }).toList(),
+        child: Directionality(
+          textDirection: TextDirection.rtl,
+          child: Column(
+            children: [
+              SizedBox(
+                height: 200.0, // ارتفاع دلخواه بنر اسلایدر
+                child: PageView.builder(
+                  controller: _pageController,
+                  itemCount: null,
+                  onPageChanged: (int page) {
+                    setState(() {
+                      _currentPage =
+                          page %
+                          widget.assetImagePaths.length; // برای اندیکاتورها
+                    });
+                  },
+                  itemBuilder: (BuildContext context, int index) {
+                    final int realIndex = index % widget.assetImagePaths.length;
+                    return ClipRRect(
+                      borderRadius: BorderRadius.circular(8.0),
+                      child: Image.asset(
+                        widget.assetImagePaths[realIndex],
+                        fit: BoxFit.fitHeight,
+                        width: double.infinity,
+                      ),
+                    );
+                  },
                 ),
               ),
-          ],
+              if (widget.assetImagePaths.length > 1)
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children:
+                        widget.assetImagePaths.map((path) {
+                          int index = widget.assetImagePaths.indexOf(path);
+                          return Container(
+                            width: 8.0,
+                            height: 8.0,
+                            margin: EdgeInsets.symmetric(horizontal: 4.0),
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color:
+                                  _currentPage == index
+                                      ? Theme.of(context).primaryColor
+                                      : Colors.grey,
+                            ),
+                          );
+                        }).toList(),
+                  ),
+                ),
+            ],
+          ),
         ),
       ),
     );
