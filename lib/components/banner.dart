@@ -59,12 +59,10 @@ class _BannerSliderState extends State<BannerSlider> {
                   final int realIndex = index % widget.assetImagePaths.length;
                   return ClipRRect(
                     borderRadius: BorderRadius.circular(8.0),
-                    child: Center(
-                      child: Image.asset(
-                        widget.assetImagePaths[realIndex],
-                        fit: BoxFit.fitHeight,
-                        width: double.infinity,
-                      ),
+                    child: Image.asset(
+                      widget.assetImagePaths[realIndex],
+                      fit: BoxFit.fitHeight,
+                      width: double.infinity,
                     ),
                   );
                 },

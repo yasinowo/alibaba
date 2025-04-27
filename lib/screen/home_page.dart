@@ -196,6 +196,93 @@ class HomePage extends StatelessWidget {
               ),
             ),
           ),
+
+          SliverToBoxAdapter(
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Directionality(
+                textDirection: TextDirection.rtl,
+                child: Padding(
+                  padding: EdgeInsets.only(right: 10),
+                  child: Row(
+                    children: <Widget>[
+                      Container(
+                        width: 250,
+                        height: 200,
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.grey, width: 1),
+                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                        ),
+                        child: Column(
+                          crossAxisAlignment:
+                              CrossAxisAlignment
+                                  .end, // تراز کلی Column را به راست تغییر می‌دهیم
+                          children: [
+                            Row(
+                              mainAxisAlignment:
+                                  MainAxisAlignment
+                                      .spaceBetween, // فضا بین تصویر و متن‌ها
+                              crossAxisAlignment:
+                                  CrossAxisAlignment
+                                      .start, // تراز عمودی را از بالا شروع می‌کنیم
+                              children: [
+                                SizedBox(
+                                  width:
+                                      100, // عرض دلخواه برای تصویر (تغییر دهید)
+                                  height:
+                                      100, // ارتفاع دلخواه برای تصویر (تغییر دهید)
+                                  child: Image.asset(
+                                    'assets/images/image1.png',
+                                    fit: BoxFit.fitWidth,
+                                  ),
+                                ),
+                                Expanded(
+                                  // برای اشغال فضای باقی مانده توسط متن‌ها
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment
+                                            .end, // تراز متن‌ها به راست
+                                    children: [
+                                      Text(
+                                        'مجموعه کتاب سفر علی بابا',
+                                        style: MyFonts.titleMedium,
+                                        textAlign:
+                                            TextAlign
+                                                .right, // اطمینان از تراز متن به راست
+                                      ),
+                                      Text(
+                                        softWrap: true,
+                                        'جامع ترین راهنمای گردش و تفریح در شهرهای پرطرفدار به صورت رایگان',
+                                        style: MyFonts.bodyMedium.copyWith(
+                                          color: Colors.blueGrey,
+                                        ),
+                                        textAlign:
+                                            TextAlign
+                                                .right, // اطمینان از تراز متن به راست
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                            // می‌توانید ویجت‌های دیگری را در زیر Row (تصویر و متن‌ها) در Column قرار دهید
+                          ],
+                        ),
+                      ),
+                      Container(
+                        width: 300.0,
+                        height: 150.0,
+                        color: Colors.green,
+                        margin: const EdgeInsets.all(8.0),
+                        child: const Center(child: Text('کانتینر دوم')),
+                      ),
+                      // می‌توانید کانتینرهای بیشتری را در اینجا اضافه کنید
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );
