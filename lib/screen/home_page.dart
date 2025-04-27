@@ -369,7 +369,7 @@ class HomePage extends StatelessWidget {
                           children: [
                             Text(
                               item['title']!,
-                              style: MyFonts.titleMedium,
+                              style: MyFonts.titleSmall,
                               textAlign: TextAlign.right,
                             ),
                             (item['description'] != null)

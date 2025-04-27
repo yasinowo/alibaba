@@ -5,27 +5,29 @@ class MyFonts {
   static const TextStyle titleLarge = TextStyle(fontSize: 50);
   static const TextStyle titleMedium = TextStyle(
     fontSize: 20,
+    fontFamily: 'Ykb',
     fontWeight: FontWeight.bold,
   );
   static const TextStyle titleSmall = TextStyle(
-    fontSize: 18,
+    fontSize: 17,
     fontWeight: FontWeight.bold,
-    // fontFamily: 'RBbold',
+    fontFamily: 'Ykmd',
   );
   static const TextStyle displaySmall = TextStyle(
     fontSize: 14,
     fontWeight: FontWeight.bold,
-    height: 0,
+    fontFamily: 'Yk',
   );
   static const TextStyle tagSmall = TextStyle(
     fontSize: 12,
     fontWeight: FontWeight.bold,
-    height: 0,
+    fontFamily: 'Yk',
   );
 
   static const TextStyle bodyMedium = TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.bold,
+    fontFamily: 'Ykb',
   );
 
   // static const TextStyle titleSmall = TextStyle(fontSize: 25, fontFamily: 'PR');

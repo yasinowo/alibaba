@@ -69,28 +69,33 @@ class _FooterSectionState extends State<FooterSection> {
   }
 
   Widget _buildTagsRow() {
-    List<String> initialTags = [
+    List<String> moreTags = [
       'بلیط چارتـر',
       'تور کیش',
       'تور استانبول',
       'بلیط قطار',
       'خرید بلیط هواپیما',
+      'خارجی',
+      'اطلاعات فرودگاهی',
+      'شیوه‌نامه حقوق مسافر',
+      'رزرو هتل',
+      'هتل مشهد',
+      'هتل کیش',
+      'هتل درویشی مشهد',
     ];
 
-    List<String> moreTags = [
-      'تور مشهد',
-      'تور دبی',
+    List<String> initialTags = [
       'بلیط اتوبوس',
-      'رزرو هتل',
-      'تور آنتالیا',
+      'بلیط تهران استانبول',
+      'هتل شایگان کیش...',
     ];
 
     List<String> tagsToShow =
         _showMoreTags ? (initialTags + moreTags) : initialTags;
 
     return Wrap(
-      spacing: 5.0, // فاصله افقی بین Row ها (تگ + نقطه)
-      runSpacing: 3.0, // فاصله عمودی بین ردیف ها
+      spacing: 5.0,
+      runSpacing: 3.0,
       alignment: WrapAlignment.center,
       children: [
         ...tagsToShow.asMap().entries.map((entry) {
@@ -99,20 +104,13 @@ class _FooterSectionState extends State<FooterSection> {
           return Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text(
-                tag,
-                style: MyFonts.tagSmall.copyWith(color: Colors.blueGrey),
-              ),
-              if (index <
-                  tagsToShow.length - 1) // اضافه کردن نقطه اگر آخرین تگ نیست
+              Text(tag),
+              if (index < tagsToShow.length - 1)
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 3.0),
                   child: Text(
-                    '●', // یا هر علامت نقطه دلخواه
-                    style: TextStyle(
-                      fontSize: 10.0,
-                      color: Colors.grey,
-                    ), // استایل متفاوت برای نقطه
+                    '●',
+                    style: TextStyle(fontSize: 8.0, color: Colors.grey),
                   ),
                 ),
             ],
@@ -124,9 +122,22 @@ class _FooterSectionState extends State<FooterSection> {
               _showMoreTags = !_showMoreTags;
             });
           },
-          child: Text(
-            _showMoreTags ? 'کمتر' : 'بیشتر',
-            style: TextStyle(color: Colors.blue),
+          child: Padding(
+            padding: EdgeInsets.only(right: 10),
+            child: Row(
+              children: [
+                Text(
+                  _showMoreTags ? 'کمتر' : 'بیشتر',
+                  style: TextStyle(color: Color(0xff0077DB)),
+                ),
+                Icon(
+                  _showMoreTags
+                      ? Icons.keyboard_arrow_up_outlined
+                      : Icons.keyboard_arrow_down_outlined,
+                  color: Color(0xff0077DB),
+                ),
+              ],
+            ),
           ),
         ),
       ],
@@ -134,52 +145,103 @@ class _FooterSectionState extends State<FooterSection> {
   }
 
   Widget _buildPhoneSupport() {
-    return Column(
-      children: [
-        Text('تلفن پشتیبانی:', style: TextStyle(fontSize: 14)),
-        SizedBox(height: 4),
-        Text('021 - 43900000', style: TextStyle(fontWeight: FontWeight.bold)),
-      ],
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 20),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text('تلفن پشتیبانی:', style: MyFonts.displaySmall),
+          SizedBox(height: 4),
+          Text(
+            '021-43900000',
+            style: MyFonts.displaySmall.copyWith(
+              fontFamily: 'Yk',
+              fontSize: 17,
+            ),
+          ),
+        ],
+      ),
     );
   }
 
   Widget _buildSocialIcons() {
-    return Row(
+    return Column(
+      mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Icon(Icons.camera_alt_outlined),
-        SizedBox(width: 8),
-        Icon(Icons.movie_outlined),
-        SizedBox(width: 8),
-        Icon(Icons.chat_bubble_outline),
-        SizedBox(width: 8),
-        Icon(Icons.send_outlined),
-        SizedBox(width: 8),
-        Icon(Icons.play_circle_outline),
+        Text('در شبکه های اجتماعی:', style: MyFonts.displaySmall),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset(
+              'assets/icons/telegram.png',
+              height: 40,
+              width: 30,
+              fit: BoxFit.cover,
+            ),
+            SizedBox(width: 10),
+            Image.asset(
+              'assets/icons/youtube.png',
+              height: 40,
+              width: 30,
+              fit: BoxFit.cover,
+            ),
+            SizedBox(width: 15),
+            Image.asset('assets/icons/x.png', height: 30, width: 30),
+            SizedBox(width: 15),
+            Image.asset(
+              'assets/icons/aparat.png',
+              height: 25,
+              width: 25,
+              fit: BoxFit.cover,
+            ),
+            SizedBox(width: 15),
+            Image.asset(
+              'assets/icons/insta.png',
+              height: 25,
+              width: 25,
+              fit: BoxFit.cover,
+            ),
+            SizedBox(width: 15),
+            Image.asset(
+              'assets/icons/linkdin.png',
+              height: 25,
+              width: 25,
+              fit: BoxFit.cover,
+            ),
+          ],
+        ),
       ],
     );
   }
 
   Widget _buildCopyright() {
-    return Column(
-      children: [
-        SizedBox(height: 10),
-        Image.asset(
-          'assets/icons/alibaba_logo.png', // لوگو
-          height: 30,
-        ),
-        SizedBox(height: 8),
-        Text(
-          'کلیه حقوق محفوظ و متعلق به آژانس هواپیمایی و جهانگردی علی‌بابا می‌باشد.',
-          textAlign: TextAlign.center,
-          style: TextStyle(fontSize: 12, color: Colors.grey),
-        ),
-        SizedBox(height: 4),
-        Text(
-          'نسخه 3.10.4.9',
-          style: TextStyle(fontSize: 10, color: Colors.grey),
-        ),
-      ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 5.0),
+      child: Column(
+        children: [
+          SizedBox(height: 5),
+          Image.asset(
+            'assets/icons/alibaba_logo.png', // لوگو
+            height: 35,
+            fit: BoxFit.fill,
+          ),
+          SizedBox(height: 8),
+          Text(
+            'کلیه حقوق محفوظ و متعلق به آژانس هواپیمایی و جهانگردی علی‌بابا می‌باشد.',
+            textAlign: TextAlign.center,
+            style: MyFonts.displaySmall.copyWith(
+              color: Colors.grey,
+              fontSize: 13,
+            ),
+          ),
+          SizedBox(height: 4),
+          Text(
+            'نسخه 3.10.4.9',
+            style: MyFonts.displaySmall.copyWith(color: Colors.grey),
+          ),
+        ],
+      ),
     );
   }
 }

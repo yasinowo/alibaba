@@ -78,6 +78,15 @@ flutter:
     - family: RBmd
       fonts:
         - asset: assets/fonts/Roboto/Roboto-Bold.ttf
+    - family: Yk
+      fonts:
+        - asset: assets/fonts/Yekan_Bakh_Fanum_Regular.TTF
+    - family: Ykb
+      fonts:
+        - asset: assets/fonts/Yekan_Bakh_Fanum_Extra_Bold.TTF
+    - family: Ykmd
+      fonts:
+        - asset: assets/fonts/Yekan_Bakh_Fanum_Medium.TTF
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro
