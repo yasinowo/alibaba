@@ -43,7 +43,9 @@ class HomePage extends StatelessWidget {
       bottomNavigationBar: MyNavigationBar(),
       body: CustomScrollView(
         slivers: [
-          Appbar(),
+          // Appbar(
+          //   scroll
+          // ),
           // SliverList(
           //   delegate: SliverChildBuilderDelegate((
           //     BuildContext context,
@@ -56,6 +58,11 @@ class HomePage extends StatelessWidget {
           //     );
           //   }, childCount: 20),
           // ),
+          SliverPersistentHeader(
+            pinned: true,
+            delegate: Appbar(expandedHeight: 300),
+          ),
+
           SliverPadding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
             sliver: SliverToBoxAdapter(
