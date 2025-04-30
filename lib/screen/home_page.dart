@@ -11,30 +11,28 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double _bottomContainerHeight = 80.0; // ارتفاع کانتینر میانی
-    var theme = Theme.of(context);
     List<Map<String, String>> travelList = [
       {
-        'image': 'assets/images/image1.png',
+        'image': 'assets/images/screen_app.png',
         'title': 'مجموعه کتاب سفر علی بابا',
         'description':
             'جامع ترین راهنمای گردش و تفریح در شهرهای پرطرفدار به صورت رایگان',
       },
       {
-        'image': 'assets/images/image1.png',
+        'image': 'assets/images/screen_app.png',
         'title': 'پادکست رادیو دور دنیا',
         'description': 'درباره هرچیزی که مربوط به سفر ، ماجراجویی و تفریح باشه',
       },
     ];
     List<Map<String, String>> magPost = [
       {
-        'image': 'assets/images/mag1.png',
+        'image': 'assets/images/armanestan.jpg',
         'title': 'جاهای دیدنی ارمنستان; تاریخ را ورق بزنید',
         // 'description':
         //     'جامع ترین راهنمای گردش و تفریح در شهرهای پرطرفدار به صورت رایگان',
       },
       {
-        'image': 'assets/images/mag2.png',
+        'image': 'assets/images/dubai.jpg',
         'title': 'بهترین جاهای دیدنی که نباید انهارا از دست داد',
         // 'description': 'درباره هرچیزی که مربوط به سفر ، ماجراجویی و تفریح باشه',
       },
@@ -221,15 +219,21 @@ class HomePage extends StatelessWidget {
                       border: Border.all(color: Colors.grey, width: 1),
                       borderRadius: BorderRadius.all(Radius.circular(10)),
                     ),
-                    padding: EdgeInsets.only(right: 5),
+                    padding: EdgeInsets.only(right: 5, top: 2),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         SizedBox(
-                          width: 100,
+                          width: 240,
                           height: 100,
-                          child: Image.asset(item['image']!, fit: BoxFit.cover),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            child: Image.asset(
+                              item['image']!,
+                              fit: BoxFit.fitWidth,
+                            ),
+                          ),
                         ),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,

@@ -9,7 +9,20 @@ class _ExpandedCategories extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(color: Colors.red, height: expandedCategoriesHeight);
+    return Container(
+      height: expandedCategoriesHeight,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.all(Radius.circular(12)),
+        border: Border.all(color: Color.fromRGBO(0, 0, 0, 0.12), width: 1),
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Row(children: [Text('data')]),
+        ],
+      ),
+    );
   }
 }
 
