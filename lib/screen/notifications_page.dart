@@ -11,7 +11,13 @@ class NotificationsPage extends StatefulWidget {
 }
 
 class _NotificationsPageState extends State<NotificationsPage> {
-  List<String> filters = ['همه', 'تغییرات پرواز', 'اطلاع‌رسانی', 'تخفیف‌ها'];
+  List<Map<String, dynamic>> filters = [
+    {'text': 'همه', 'icon': ''},
+    {'text': 'تغییرات پرواز', 'icon': 'assets/icons/retry.png'},
+    {'text': 'اطلاع‌رسانی', 'icon': 'assets/icons/information.png'},
+    {'text': 'تخفیف‌ها', 'icon': 'assets/icons/discount.png'},
+  ];
+
   List<String> allNotifications = [
     'پرواز شما در ساعت 10:00 تغییر کرده است.',
     'اطلاعیه مهم درباره وضعیت فرودگاه.',
@@ -20,30 +26,30 @@ class _NotificationsPageState extends State<NotificationsPage> {
     'تغییر در ترمینال پرواز شما.',
     'فرصت ویژه: تخفیف‌های لحظه آخری پروازها!',
   ];
+
   List<String> filteredNotifications = [];
   int selectedFilterIndex = 0;
 
   @override
   void initState() {
     super.initState();
-    filteredNotifications = allNotifications; // نمایش همه در ابتدا
+    filteredNotifications = allNotifications; // مقداردهی اولیه مهم
   }
 
   void _handleFilterSelected(int index) {
     setState(() {
       selectedFilterIndex = index;
+
       if (index == 0) {
         filteredNotifications = allNotifications;
       } else {
-        String selectedFilter = filters[index];
+        String selectedFilter = filters[index]['text'];
         filteredNotifications =
-            allNotifications
-                .where(
-                  (notification) => notification.toLowerCase().contains(
-                    selectedFilter.toLowerCase(),
-                  ),
-                )
-                .toList();
+            allNotifications.where((notification) {
+              return notification.contains(
+                selectedFilter.replaceAll('‌', ''),
+              ); // اصلاح فاصله صفر‌عرض
+            }).toList();
       }
     });
   }
@@ -73,14 +79,15 @@ class _NotificationsPageState extends State<NotificationsPage> {
               filters: filters,
               onFilterSelected: _handleFilterSelected,
             ),
-            SizedBox(height: 140),
+            SizedBox(height: 80),
             Image.asset(
-              'assets/icons/ticket2.PNG',
-              height: 120,
-              fit: BoxFit.fitHeight,
+              'assets/icons/bucket.PNG',
+              // height: 150,
+              width: 200,
+              fit: BoxFit.fitWidth,
             ),
             Text(
-              '!سفارشی ثبت نشده است',
+              '!اعلانی یافت نشد',
               textAlign: TextAlign.right,
               style: MyFonts.titleSmall.copyWith(fontSize: 14),
             ),
@@ -92,7 +99,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
 }
 
 class NotificationFilter extends StatefulWidget {
-  final List<String> filters;
+  final List<Map<String, dynamic>> filters;
   final Function(int) onFilterSelected;
 
   const NotificationFilter({
@@ -136,23 +143,31 @@ class _NotificationFilterState extends State<NotificationFilter> {
                   });
                 },
                 style: OutlinedButton.styleFrom(
-                  backgroundColor:
-                      isSelected ? Colors.white : Colors.grey.shade100,
+                  backgroundColor: isSelected ? Colors.white : null,
                   foregroundColor: isSelected ? Colors.blue : Colors.black,
                   side: BorderSide(
-                    color: isSelected ? Colors.blue : Colors.grey.shade300,
+                    width: 1.5,
+                    color: isSelected ? Colors.blue : Colors.grey.shade400,
                   ),
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
+                    borderRadius: BorderRadius.circular(5),
                   ),
                   padding: const EdgeInsets.symmetric(
                     horizontal: 12,
                     vertical: 8,
                   ),
-                  textStyle: const TextStyle(fontSize: 14),
+                  textStyle: MyFonts.displaySmall,
                 ),
-                icon: Icon(icons[index], size: 18),
-                label: Text(widget.filters[index]),
+                icon:
+                    (widget.filters[index]['icon'] != '')
+                        ? Image.asset(
+                          widget.filters[index]['icon'],
+                          width: 20,
+                          height: 20,
+                          fit: BoxFit.cover,
+                        )
+                        : null,
+                label: Text(widget.filters[index]['text']),
               ),
             );
           }),
