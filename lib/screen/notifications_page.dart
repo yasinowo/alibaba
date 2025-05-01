@@ -57,7 +57,6 @@ class _NotificationsPageState extends State<NotificationsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: MyNavigationBar(),
       appBar: defultAppbar(),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15),

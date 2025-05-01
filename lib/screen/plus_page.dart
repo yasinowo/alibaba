@@ -73,7 +73,6 @@ class PlusPage extends StatelessWidget {
     ];
 
     return Scaffold(
-      bottomNavigationBar: MyNavigationBar(),
       appBar: defultAppbar(),
       body: SafeArea(
         child: SingleChildScrollView(

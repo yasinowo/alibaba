@@ -6,44 +6,26 @@ import 'package:alibaba/screen/profile_page.dart';
 import 'package:alibaba/theme/font.dart';
 import 'package:flutter/material.dart';
 
-class MyNavigationBar extends StatefulWidget {
-  final ValueChanged<int>? onTabChange; // کال‌بک برای اطلاع رسانی تغییر تب
+class MyNavigationBar extends StatelessWidget {
+  final int currentIndex;
+  final Function(int) onTap;
 
-  const MyNavigationBar({super.key, this.onTabChange});
-
-  @override
-  State<MyNavigationBar> createState() => _MyNavigationBarState();
-}
-
-class _MyNavigationBarState extends State<MyNavigationBar> {
-  int _currentIndex = 0;
-  static final List<Widget> _pages = <Widget>[
-    HomePage(),
-    PlusPage(),
-    MytravlePage(),
-    NotificationsPage(),
-    ProfilePage(),
-  ];
-
-  void _onTabTapped(int index) {
-    setState(() {
-      _currentIndex = index;
-    });
-    if (widget.onTabChange != null) {
-      widget.onTabChange!(index); // فراخوانی کال‌بک با اندیس تب انتخاب شده
-    }
-  }
+  const MyNavigationBar({
+    super.key,
+    required this.currentIndex,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: BottomNavigationBar(
-        unselectedLabelStyle: MyFonts.displaySmall,
-        selectedLabelStyle: MyFonts.displaySmall,
-        currentIndex: _currentIndex,
-        onTap: _onTabTapped,
+        currentIndex: currentIndex,
+        onTap: onTap,
         type: BottomNavigationBarType.fixed,
+        selectedLabelStyle: MyFonts.displaySmall,
+        unselectedLabelStyle: MyFonts.displaySmall,
         items: [
           BottomNavigationBarItem(
             icon: Image.asset(
@@ -53,9 +35,9 @@ class _MyNavigationBarState extends State<MyNavigationBar> {
             ),
             activeIcon: Image.asset(
               'assets/icons/home.png',
-              color: Colors.blue,
               width: 24,
               height: 24,
+              color: Colors.blue,
             ),
             label: 'خانه',
           ),

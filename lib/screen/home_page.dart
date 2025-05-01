@@ -37,7 +37,6 @@ class HomePage extends StatelessWidget {
       },
     ];
     return Scaffold(
-      bottomNavigationBar: MyNavigationBar(),
       body: CustomScrollView(
         slivers: [
           // Appbar(
