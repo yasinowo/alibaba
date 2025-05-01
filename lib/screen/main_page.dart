@@ -22,7 +22,7 @@ class _MainScreenState extends State<MainScreen> {
     PlusPage(),
     const MytravlePage(),
     const NotificationsPage(),
-    const ProfilePage(),
+    ProfilePage(),
   ];
 
   void _onTabTapped(int index) {

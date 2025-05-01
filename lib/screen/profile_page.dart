@@ -1,12 +1,191 @@
 import 'package:alibaba/components/defult_appbar.dart';
 import 'package:alibaba/components/navigationbar.dart';
+import 'package:alibaba/theme/font.dart';
 import 'package:flutter/material.dart';
 
 class ProfilePage extends StatelessWidget {
-  const ProfilePage({super.key});
+  ProfilePage({super.key});
+  final List<Map<String, dynamic>> moreOptions = [
+    {'title': 'خرید خودکار', 'icon': Icons.shopping_cart_outlined},
+    {'title': 'لیست مسافران', 'icon': Icons.people_outline},
+    {'title': 'علاقه‌مندی‌ها', 'icon': Icons.star_border},
+    {'title': 'مرکز پشتیبانی', 'icon': Icons.support_agent},
+    {'title': 'درخواست پشتیبانی', 'icon': Icons.chat_bubble_outline},
+    {
+      'title': 'خروج از حساب کاربری',
+      'icon': Icons.logout,
+      'color': Colors.red,
+      'onTap': () {
+        // TODO: پیاده‌سازی خروج
+      },
+    },
+  ];
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 15),
+        child: Directionality(
+          textDirection: TextDirection.rtl,
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            // mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SizedBox(height: 10, width: double.infinity),
+              Align(
+                alignment: Alignment.bottomRight,
+                child: Text(
+                  'حساب کاربری',
+                  style: MyFonts.titleLarge.copyWith(letterSpacing: -0.8),
+                ),
+              ),
+              SizedBox(height: 15),
+              User(),
+
+              SizedBox(height: 12),
+
+              // بخش موجودی حساب
+              AccBalance(),
+
+              SizedBox(height: 12),
+
+              // حساب کاربری علی پلاس
+              AlibabaPlus(),
+
+              SizedBox(height: 12),
+
+              // لیست گزینه‌های پایینی با ListView.builder
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  itemCount: moreOptions.length,
+                  itemBuilder: (context, index) {
+                    final item = moreOptions[index];
+                    return ListTile(
+                      leading: Icon(
+                        item['icon'],
+                        color: item['color'] ?? Colors.black,
+                      ),
+                      title: Text(item['title']),
+                      onTap: item['onTap'],
+                    );
+                  },
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class AlibabaPlus extends StatelessWidget {
+  const AlibabaPlus({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: Colors.grey.shade300, width: 2),
+      ),
+      child: Row(
+        children: [
+          Image.asset(
+            'assets/icons/plus.png',
+            width: 30,
+            height: 30,
+            color: Colors.black,
+          ),
+          SizedBox(width: 8),
+          Text('حساب کاربری علی‌پلاس'),
+        ],
+      ),
+    );
+  }
+}
+
+class AccBalance extends StatelessWidget {
+  const AccBalance({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: Colors.grey.shade300, width: 2),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Text('موجودی حساب', style: MyFonts.titleSmall),
+              Spacer(),
+              Text(
+                '0',
+                style: MyFonts.titleMedium.copyWith(
+                  color: Color.fromARGB(255, 184, 138, 30),
+                ),
+              ),
+              Text(' تومان', style: MyFonts.bodyMedium),
+            ],
+          ),
+          SizedBox(height: 8),
+          Divider(),
+          Row(
+            children: [
+              Icon(Icons.attach_money_outlined),
+              SizedBox(width: 8),
+              Text('موجودی و اعتبار من', style: MyFonts.bodyMedium),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class User extends StatelessWidget {
+  const User({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {},
+      child: Container(
+        padding: EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(color: Colors.grey.shade300, width: 2),
+        ),
+        child: Row(
+          children: [
+            Image.asset('assets/icons/user.png', width: 45, height: 45),
+            SizedBox(width: 16),
+            Text('09025559891', style: MyFonts.titleSmall),
+            Spacer(),
+            Text(
+              'ویرایش اطلاعات',
+              style: MyFonts.bodyMedium.copyWith(color: Colors.blue),
+            ),
+            Icon(Icons.arrow_forward_ios, size: 16, color: Colors.blue),
+          ],
+        ),
+      ),
+    );
   }
 }

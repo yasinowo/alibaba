@@ -5,7 +5,7 @@ class MyFonts {
   // static const TextStyle titleLarge = TextStyle(fontSize: 50);
   static const TextStyle titleLarge = TextStyle(
     fontSize: 26,
-    fontFamily: 'Ykb',
+    fontFamily: 'Ykmd',
     fontWeight: FontWeight.bold,
   );
   static const TextStyle titleMedium = TextStyle(

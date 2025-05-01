@@ -73,7 +73,6 @@ class PlusPage extends StatelessWidget {
     ];
 
     return Scaffold(
-      appBar: defultAppbar(),
       body: SafeArea(
         child: SingleChildScrollView(
           controller: controller,
