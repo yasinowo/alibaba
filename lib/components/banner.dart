@@ -39,7 +39,7 @@ class _BannerSliderState extends State<BannerSlider> {
   @override
   Widget build(BuildContext context) {
     return SliverPadding(
-      padding: EdgeInsets.symmetric(horizontal: 10),
+      padding: EdgeInsets.symmetric(horizontal: 8),
       sliver: SliverToBoxAdapter(
         child: Directionality(
           textDirection: TextDirection.rtl,
@@ -65,34 +65,31 @@ class _BannerSliderState extends State<BannerSlider> {
                         widget.assetImagePaths[realIndex],
                         fit: BoxFit.contain,
                         width: double.infinity,
-                        height: 200,
+                        height: double.infinity,
                       ),
                     );
                   },
                 ),
               ),
               if (widget.assetImagePaths.length > 1)
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children:
-                        widget.assetImagePaths.map((path) {
-                          int index = widget.assetImagePaths.indexOf(path);
-                          return Container(
-                            width: 8.0,
-                            height: 8.0,
-                            margin: EdgeInsets.symmetric(horizontal: 4.0),
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color:
-                                  _currentPage == index
-                                      ? Theme.of(context).primaryColor
-                                      : Colors.grey,
-                            ),
-                          );
-                        }).toList(),
-                  ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children:
+                      widget.assetImagePaths.map((path) {
+                        int index = widget.assetImagePaths.indexOf(path);
+                        return Container(
+                          width: 8.0,
+                          height: 8.0,
+                          margin: EdgeInsets.symmetric(horizontal: 4.0),
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color:
+                                _currentPage == index
+                                    ? Theme.of(context).primaryColor
+                                    : Colors.grey,
+                          ),
+                        );
+                      }).toList(),
                 ),
             ],
           ),
