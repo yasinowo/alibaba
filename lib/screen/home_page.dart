@@ -28,8 +28,7 @@ class HomePage extends StatelessWidget {
       {
         'image': 'assets/images/armanestan.jpg',
         'title': 'جاهای دیدنی ارمنستان; تاریخ را ورق بزنید',
-        // 'description':
-        //     'جامع ترین راهنمای گردش و تفریح در شهرهای پرطرفدار به صورت رایگان',
+        'description': '',
       },
       {
         'image': 'assets/images/dubai.jpg',
@@ -197,8 +196,7 @@ class HomePage extends StatelessWidget {
   SliverToBoxAdapter readTravleList(List<Map<String, String>> travelData) {
     return SliverToBoxAdapter(
       child: SizedBox(
-        // برای تعیین ارتفاع کلی لیست افقی
-        height: 200, // ارتفاع مشابه کانتینرها
+        height: (travelData[0]['description'] != null) ? 195 : 220,
         child: Directionality(
           textDirection: TextDirection.rtl,
           child: Padding(
@@ -226,7 +224,7 @@ class HomePage extends StatelessWidget {
                       children: [
                         SizedBox(
                           width: 240,
-                          height: 100,
+                          height: 120,
                           child: ClipRRect(
                             borderRadius: BorderRadius.all(Radius.circular(10)),
                             child: Image.asset(

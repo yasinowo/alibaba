@@ -91,7 +91,7 @@ class _CollapsedCategories extends StatelessWidget {
           return InkWell(
             onTap: () {},
             child: Padding(
-              padding: const EdgeInsets.all(15.0),
+              padding: const EdgeInsets.all(16),
               child: Image.asset(
                 item['icon'],
                 width: 30,
@@ -136,15 +136,13 @@ class Appbar extends SliverPersistentHeaderDelegate {
       child: SafeArea(
         child: Stack(
           fit: StackFit.expand,
-
           children: [
             Positioned(
               left: 0,
               right: 0,
               bottom: 0,
               child: Container(
-                height:
-                    expandedCategoriesHeight / 2 + spaceBelowCategories - 10,
+                height: expandedCategoriesHeight / 2 + spaceBelowCategories,
                 color: Colors.white,
               ),
             ),
