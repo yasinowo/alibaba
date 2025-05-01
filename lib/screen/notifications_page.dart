@@ -93,8 +93,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
 
 class NotificationFilter extends StatefulWidget {
   final List<String> filters;
-  final Function(int)
-  onFilterSelected; // تابعی برای اطلاع رسانی فیلتر انتخاب شده به والد
+  final Function(int) onFilterSelected;
 
   const NotificationFilter({
     super.key,
@@ -109,131 +108,56 @@ class NotificationFilter extends StatefulWidget {
 class _NotificationFilterState extends State<NotificationFilter> {
   int _selectedFilterIndex = 0;
 
+  List<IconData> icons = [
+    Icons.list_alt, // همه
+    Icons.refresh, // تغییرات پرواز
+    Icons.article_outlined, // اطلاع‌رسانی
+    Icons
+        .discount_outlined, // تخفیف‌ها (از پکیج Icons ممکنه نیاز به جایگزین داشته باشه)
+  ];
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+      child: Directionality(
+        textDirection: TextDirection.rtl,
         child: Row(
-          children:
-              widget.filters.asMap().entries.map((entry) {
-                int index = entry.key;
-                String filter = entry.value;
-                return Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 4.0),
-                  child: FilterChip(
-                    label: Text(filter),
-                    selected: _selectedFilterIndex == index,
-                    onSelected: (bool selected) {
-                      setState(() {
-                        if (selected) {
-                          _selectedFilterIndex = index;
-                          widget.onFilterSelected(
-                            index,
-                          ); // اطلاع رسانی فیلتر انتخاب شده
-                        } else {
-                          _selectedFilterIndex =
-                              0; // پیش فرض به "همه" یا اولین فیلتر برگردانید
-                          widget.onFilterSelected(0);
-                        }
-                      });
-                    },
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20.0),
-                      side: BorderSide(color: Colors.blue.shade300),
-                    ),
-                    backgroundColor: Colors.grey.shade200,
-                    selectedColor: Colors.blue.shade100,
+          children: List.generate(widget.filters.length, (index) {
+            bool isSelected = _selectedFilterIndex == index;
+
+            return Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 4.0),
+              child: OutlinedButton.icon(
+                onPressed: () {
+                  setState(() {
+                    _selectedFilterIndex = index;
+                    widget.onFilterSelected(index);
+                  });
+                },
+                style: OutlinedButton.styleFrom(
+                  backgroundColor:
+                      isSelected ? Colors.white : Colors.grey.shade100,
+                  foregroundColor: isSelected ? Colors.blue : Colors.black,
+                  side: BorderSide(
+                    color: isSelected ? Colors.blue : Colors.grey.shade300,
                   ),
-                );
-              }).toList(),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 12,
+                    vertical: 8,
+                  ),
+                  textStyle: const TextStyle(fontSize: 14),
+                ),
+                icon: Icon(icons[index], size: 18),
+                label: Text(widget.filters[index]),
+              ),
+            );
+          }),
         ),
       ),
-    );
-  }
-}
-
-// نحوه استفاده در ویجت والد:
-class MyParentWidget extends StatefulWidget {
-  @override
-  _MyParentWidgetState createState() => _MyParentWidgetState();
-}
-
-class _MyParentWidgetState extends State<MyParentWidget> {
-  List<String> filters = ['همه', 'تغییرات پرواز', 'اطلاع‌رسانی', 'تخفیف‌ها'];
-  List<String> allNotifications = [
-    'پرواز شما در ساعت 10:00 تغییر کرده است.',
-    'اطلاعیه مهم درباره وضعیت فرودگاه.',
-    '20% تخفیف برای رزرو هتل‌های منتخب!',
-    'یادآوری: پرواز شما فردا صبح است.',
-    'تغییر در ترمینال پرواز شما.',
-    'فرصت ویژه: تخفیف‌های لحظه آخری پروازها!',
-  ];
-  List<String> filteredNotifications = [];
-  int selectedFilterIndex = 0;
-
-  @override
-  void initState() {
-    super.initState();
-    filteredNotifications = allNotifications; // نمایش همه در ابتدا
-  }
-
-  void _handleFilterSelected(int index) {
-    setState(() {
-      selectedFilterIndex = index;
-      if (index == 0) {
-        filteredNotifications = allNotifications;
-      } else {
-        String selectedFilter = filters[index];
-        filteredNotifications =
-            allNotifications
-                .where(
-                  (notification) => notification.toLowerCase().contains(
-                    selectedFilter.toLowerCase(),
-                  ),
-                )
-                .toList();
-      }
-      print('فیلتر انتخاب شده: ${filters[index]}');
-      // در اینجا می‌توانید لیست اعلانات را بر اساس فیلتر به روز رسانی کنید
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Text(
-            'اعلان‌ها',
-            style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
-          ),
-        ),
-        NotificationFilter(
-          filters: filters,
-          onFilterSelected: _handleFilterSelected,
-        ),
-        Expanded(
-          child: ListView.builder(
-            itemCount: filteredNotifications.length,
-            itemBuilder: (context, index) {
-              return Card(
-                margin: const EdgeInsets.symmetric(
-                  horizontal: 16.0,
-                  vertical: 8.0,
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Text(filteredNotifications[index]),
-                ),
-              );
-            },
-          ),
-        ),
-      ],
     );
   }
 }
