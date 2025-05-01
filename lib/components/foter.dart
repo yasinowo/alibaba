@@ -70,7 +70,7 @@ class _FooterSectionState extends State<FooterSection> {
 
   Widget _buildTagsRow() {
     List<String> moreTags = [
-      'بلیط چارتـر',
+      'بلیط مشهد',
       'تور کیش',
       'تور استانبول',
       'بلیط قطار',
@@ -87,7 +87,7 @@ class _FooterSectionState extends State<FooterSection> {
     List<String> initialTags = [
       'بلیط اتوبوس',
       'بلیط تهران استانبول',
-      'هتل شایگان کیش...',
+      'هتل رایگان کیش...',
     ];
 
     List<String> tagsToShow =
@@ -222,7 +222,7 @@ class _FooterSectionState extends State<FooterSection> {
         children: [
           SizedBox(height: 5),
           Image.asset(
-            'assets/icons/alibaba_logo.png', // لوگو
+            'assets/icons/alibaba_logo.png',
             height: 35,
             fit: BoxFit.fill,
           ),

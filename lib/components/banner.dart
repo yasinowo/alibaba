@@ -46,7 +46,7 @@ class _BannerSliderState extends State<BannerSlider> {
           child: Column(
             children: [
               SizedBox(
-                height: 200.0, // ارتفاع دلخواه بنر اسلایدر
+                height: 200.0,
                 child: PageView.builder(
                   controller: _pageController,
                   itemCount: null,
@@ -63,8 +63,9 @@ class _BannerSliderState extends State<BannerSlider> {
                       borderRadius: BorderRadius.circular(8.0),
                       child: Image.asset(
                         widget.assetImagePaths[realIndex],
-                        fit: BoxFit.fitHeight,
+                        fit: BoxFit.contain,
                         width: double.infinity,
+                        height: 200,
                       ),
                     );
                   },
