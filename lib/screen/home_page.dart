@@ -1,6 +1,6 @@
 import 'package:alibaba/components/appbar.dart';
 import 'package:alibaba/components/banner.dart';
-import 'package:alibaba/components/foter.dart';
+import 'package:alibaba/components/footer.dart';
 import 'package:alibaba/components/navigationbar.dart';
 import 'package:alibaba/theme/font.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +14,7 @@ class HomePage extends StatelessWidget {
     List<Map<String, String>> travelList = [
       {
         'image': 'assets/images/screen_app.png',
-        'title': 'مجموعه کتاب سفر علی بابا',
+        'title': 'مجموعه کتاب سفر علی‌بابا',
         'description':
             'جامع ترین راهنمای گردش و تفریح در شهرهای پرطرفدار به صورت رایگان',
       },
@@ -64,13 +64,13 @@ class HomePage extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 10),
             sliver: SliverToBoxAdapter(
               child: Text(
-                'سایر حدمات علی بابا',
+                'سایر خدمات علی‌بابا',
                 textAlign: TextAlign.right,
                 style: MyFonts.titleSmall,
               ),
             ),
           ),
-          otherServicesContent(),
+          OtherServicesContent(),
           SliverToBoxAdapter(child: SizedBox(height: 15)),
           BannerSlider(
             assetImagePaths: [
@@ -88,7 +88,7 @@ class HomePage extends StatelessWidget {
               ),
             ),
           ),
-          readTravleList(travelList),
+          ReadtravleList(travelData: travelList),
           SliverPadding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
             sliver: SliverToBoxAdapter(
@@ -99,11 +99,11 @@ class HomePage extends StatelessWidget {
               ),
             ),
           ),
-          readTravleList(magPost),
+          ReadtravleList(travelData: magPost),
           SliverToBoxAdapter(child: SizedBox(height: 10)),
           SliverToBoxAdapter(child: Divider()),
           SliverToBoxAdapter(child: SizedBox(height: 40)),
-          footerIcon(),
+          FooterIcon(),
           SliverToBoxAdapter(child: SizedBox(height: 40)),
           SliverToBoxAdapter(child: FooterSection()),
         ],
@@ -111,162 +111,45 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  SliverPadding footerIcon() {
-    return SliverPadding(
-      padding: EdgeInsets.symmetric(horizontal: 10),
-      sliver: SliverToBoxAdapter(
-        child: Directionality(
-          textDirection: TextDirection.rtl,
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  SizedBox(
-                    width: 70,
-                    height: 70,
-                    child: Image.asset('assets/icons/ticket.png'),
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text('رتبه یک سفر', style: MyFonts.titleSmall),
-                      Text(
-                        'معتبرترین عرضه کننده محصولات گردشگری در ایران',
-                        style: MyFonts.displaySmall.copyWith(
-                          color: Colors.blueGrey,
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-              SizedBox(height: 10),
-              Row(
-                children: [
-                  SizedBox(
-                    width: 70,
-                    height: 70,
-                    child: Image.asset('assets/icons/platform.png'),
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text('رتبه یک سفر', style: MyFonts.titleSmall),
-                      Text(
-                        'ارائه تمامی خدمات سفر(پرواز،قطار،اتوبوس،هتل و تور)',
-                        style: MyFonts.displaySmall.copyWith(
-                          color: Colors.blueGrey,
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-              SizedBox(height: 10),
+  // Row iconContent() {
+  //   return Row(
+  //     children: [
+  //       Container(
+  //         decoration: BoxDecoration(
+  //           color: Colors.white10,
+  //           borderRadius: BorderRadius.all(Radius.circular(12)),
+  //         ),
+  //         padding: EdgeInsets.symmetric(horizontal: 34, vertical: 12),
+  //         child: Icon(Icons.menu),
+  //       ),
+  //       SizedBox(width: 4),
+  //       Container(
+  //         decoration: BoxDecoration(
+  //           color: Colors.white10,
+  //           borderRadius: BorderRadius.all(Radius.circular(12)),
+  //         ),
+  //         padding: EdgeInsets.symmetric(horizontal: 34, vertical: 12),
+  //         child: Icon(Icons.person),
+  //       ),
+  //       SizedBox(width: 4),
+  //       Container(
+  //         decoration: BoxDecoration(
+  //           color: Colors.white10,
+  //           borderRadius: BorderRadius.all(Radius.circular(12)),
+  //         ),
+  //         padding: EdgeInsets.symmetric(horizontal: 34, vertical: 12),
+  //         child: Icon(Icons.message),
+  //       ),
+  //     ],
+  //   );
+  // }
+}
 
-              Row(
-                children: [
-                  SizedBox(
-                    width: 70,
-                    height: 70,
-                    child: Image.asset('assets/icons/chat.png'),
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text('رتبه یک سفر', style: MyFonts.titleSmall),
-                      Text(
-                        'پشتیبانی و همراهی 24 ساعته در تمامی مراحل سفر',
-                        style: MyFonts.displaySmall.copyWith(
-                          color: Colors.blueGrey,
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
+class OtherServicesContent extends StatelessWidget {
+  const OtherServicesContent({super.key});
 
-  /////////////////////////////////////////////////////////////////////////////
-  SliverToBoxAdapter readTravleList(List<Map<String, String>> travelData) {
-    return SliverToBoxAdapter(
-      child: SizedBox(
-        height: (travelData[0]['description'] != null) ? 195 : 220,
-        child: Directionality(
-          textDirection: TextDirection.rtl,
-          child: Padding(
-            padding: EdgeInsets.only(right: 10),
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: travelData.length,
-              itemBuilder: (BuildContext context, int index) {
-                final item = travelData[index];
-                return Padding(
-                  padding: const EdgeInsets.only(
-                    left: 15.0,
-                  ), // فاصله بین آیتم‌ها
-                  child: Container(
-                    width: 250,
-                    height: 200,
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.grey, width: 1),
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
-                    ),
-                    padding: EdgeInsets.only(right: 5, top: 2),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        SizedBox(
-                          width: 240,
-                          height: 120,
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.all(Radius.circular(10)),
-                            child: Image.asset(
-                              item['image']!,
-                              fit: BoxFit.fitWidth,
-                            ),
-                          ),
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Text(
-                              item['title']!,
-                              style: MyFonts.titleSmall,
-                              textAlign: TextAlign.right,
-                            ),
-                            (item['description'] != null)
-                                ? Text(
-                                  softWrap: true,
-                                  item['description']!,
-                                  style: MyFonts.bodyMedium.copyWith(
-                                    color: Colors.blueGrey,
-                                  ),
-                                  textAlign: TextAlign.right,
-                                )
-                                : Text(''),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                );
-              },
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  SliverPadding otherServicesContent() {
+  @override
+  Widget build(BuildContext context) {
     return SliverPadding(
       padding: const EdgeInsets.symmetric(horizontal: 0),
       sliver: SliverToBoxAdapter(
@@ -369,37 +252,170 @@ class HomePage extends StatelessWidget {
       ),
     );
   }
+}
 
-  // Row iconContent() {
-  //   return Row(
-  //     children: [
-  //       Container(
-  //         decoration: BoxDecoration(
-  //           color: Colors.white10,
-  //           borderRadius: BorderRadius.all(Radius.circular(12)),
-  //         ),
-  //         padding: EdgeInsets.symmetric(horizontal: 34, vertical: 12),
-  //         child: Icon(Icons.menu),
-  //       ),
-  //       SizedBox(width: 4),
-  //       Container(
-  //         decoration: BoxDecoration(
-  //           color: Colors.white10,
-  //           borderRadius: BorderRadius.all(Radius.circular(12)),
-  //         ),
-  //         padding: EdgeInsets.symmetric(horizontal: 34, vertical: 12),
-  //         child: Icon(Icons.person),
-  //       ),
-  //       SizedBox(width: 4),
-  //       Container(
-  //         decoration: BoxDecoration(
-  //           color: Colors.white10,
-  //           borderRadius: BorderRadius.all(Radius.circular(12)),
-  //         ),
-  //         padding: EdgeInsets.symmetric(horizontal: 34, vertical: 12),
-  //         child: Icon(Icons.message),
-  //       ),
-  //     ],
-  //   );
-  // }
+class FooterIcon extends StatelessWidget {
+  const FooterIcon({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SliverPadding(
+      padding: EdgeInsets.symmetric(horizontal: 10),
+      sliver: SliverToBoxAdapter(
+        child: Directionality(
+          textDirection: TextDirection.rtl,
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  SizedBox(
+                    width: 70,
+                    height: 70,
+                    child: Image.asset('assets/icons/ticket.png'),
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('رتبه یک سفر', style: MyFonts.titleSmall),
+                      Text(
+                        'معتبرترین عرضه کننده محصولات گردشگری در ایران',
+                        style: MyFonts.displaySmall.copyWith(
+                          color: Colors.blueGrey,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              SizedBox(height: 10),
+              Row(
+                children: [
+                  SizedBox(
+                    width: 70,
+                    height: 70,
+                    child: Image.asset('assets/icons/platform.png'),
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('رتبه یک سفر', style: MyFonts.titleSmall),
+                      Text(
+                        'ارائه تمامی خدمات سفر(پرواز،قطار،اتوبوس،هتل و تور)',
+                        style: MyFonts.displaySmall.copyWith(
+                          color: Colors.blueGrey,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              SizedBox(height: 10),
+
+              Row(
+                children: [
+                  SizedBox(
+                    width: 70,
+                    height: 70,
+                    child: Image.asset('assets/icons/chat.png'),
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('رتبه یک سفر', style: MyFonts.titleSmall),
+                      Text(
+                        'پشتیبانی و همراهی 24 ساعته در تمامی مراحل سفر',
+                        style: MyFonts.displaySmall.copyWith(
+                          color: Colors.blueGrey,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class ReadtravleList extends StatelessWidget {
+  const ReadtravleList({super.key, required this.travelData});
+
+  final List<Map<String, String>> travelData;
+
+  @override
+  Widget build(BuildContext context) {
+    return SliverToBoxAdapter(
+      child: SizedBox(
+        height: (travelData[0]['description'] != null) ? 195 : 220,
+        child: Directionality(
+          textDirection: TextDirection.rtl,
+          child: Padding(
+            padding: EdgeInsets.only(right: 10),
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: travelData.length,
+              itemBuilder: (BuildContext context, int index) {
+                final item = travelData[index];
+                return Padding(
+                  padding: const EdgeInsets.only(
+                    left: 15.0,
+                  ), // فاصله بین آیتم‌ها
+                  child: Container(
+                    width: 250,
+                    height: 200,
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.grey, width: 1),
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                    ),
+                    padding: EdgeInsets.only(right: 5, top: 2),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        SizedBox(
+                          width: 240,
+                          height: 120,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            child: Image.asset(
+                              item['image']!,
+                              fit: BoxFit.fitWidth,
+                            ),
+                          ),
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Text(
+                              item['title']!,
+                              style: MyFonts.titleSmall,
+                              textAlign: TextAlign.right,
+                            ),
+                            (item['description'] != null)
+                                ? Text(
+                                  softWrap: true,
+                                  item['description']!,
+                                  style: MyFonts.bodyMedium.copyWith(
+                                    color: Colors.blueGrey,
+                                  ),
+                                  textAlign: TextAlign.right,
+                                )
+                                : Text(''),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
+        ),
+      ),
+    );
+  }
 }

@@ -141,6 +141,7 @@ class Appbar extends SliverPersistentHeaderDelegate {
               left: 0,
               right: 0,
               bottom: 0,
+
               child: Container(
                 height: expandedCategoriesHeight / 2 + spaceBelowCategories,
                 color: Colors.white,

@@ -2,7 +2,12 @@ import 'package:flutter/material.dart';
 
 class MyFonts {
   //titel
-  static const TextStyle titleLarge = TextStyle(fontSize: 50);
+  // static const TextStyle titleLarge = TextStyle(fontSize: 50);
+  static const TextStyle titleLarge = TextStyle(
+    fontSize: 26,
+    fontFamily: 'Ykb',
+    fontWeight: FontWeight.bold,
+  );
   static const TextStyle titleMedium = TextStyle(
     fontSize: 20,
     fontFamily: 'Ykb',
@@ -26,6 +31,11 @@ class MyFonts {
 
   static const TextStyle bodyMedium = TextStyle(
     fontSize: 15,
+    fontWeight: FontWeight.bold,
+    fontFamily: 'Yk',
+  );
+  static const TextStyle bodySmall = TextStyle(
+    fontSize: 13.5,
     fontWeight: FontWeight.bold,
     fontFamily: 'Yk',
   );

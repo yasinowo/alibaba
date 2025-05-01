@@ -50,8 +50,18 @@ class _MyNavigationBarState extends State<MyNavigationBar> {
             label: 'خانه',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.add, size: 24),
-            activeIcon: Icon(Icons.add, size: 24, color: Colors.blue),
+            icon: Image.asset(
+              'assets/icons/plus.png',
+              width: 30,
+              height: 30,
+              color: Colors.black,
+            ),
+            activeIcon: Image.asset(
+              'assets/icons/plus.png',
+              width: 30,
+              height: 30,
+              color: Colors.blue,
+            ),
             label: 'پلاس',
           ),
           BottomNavigationBarItem(

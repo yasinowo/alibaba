@@ -17,11 +17,11 @@ class _FooterSectionState extends State<FooterSection> {
       textDirection: TextDirection.rtl,
       child: Column(
         children: [
-          _buildExpandableTile('علی بابا', [
+          _buildExpandableTile('علی‌بابا', [
             'درباره ما',
             'تماس با ما',
-            'چرا علی بابا',
-            'علی بابا پلاس',
+            'چرا علی‌بابا',
+            'علی‌بابا پلاس',
           ]),
           _buildExpandableTile('خدمات مشتریان', [
             'مرکز پشتیبانی',
