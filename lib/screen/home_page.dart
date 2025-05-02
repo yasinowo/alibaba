@@ -1,10 +1,8 @@
 import 'package:alibaba/components/appbar.dart';
 import 'package:alibaba/components/banner.dart';
 import 'package:alibaba/components/footer.dart';
-import 'package:alibaba/components/navigationbar.dart';
 import 'package:alibaba/theme/font.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -39,26 +37,10 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       body: CustomScrollView(
         slivers: [
-          // Appbar(
-          //   scroll
-          // ),
-          // SliverList(
-          //   delegate: SliverChildBuilderDelegate((
-          //     BuildContext context,
-          //     int index,
-          //   ) {
-          //     return Container(
-          //       color: index.isOdd ? Colors.white : Colors.black12,
-          //       height: 100.0,
-          //       child: Center(child: Text('$index', textScaleFactor: 5)),
-          //     );
-          //   }, childCount: 20),
-          // ),
           SliverPersistentHeader(
             pinned: true,
             delegate: Appbar(expandedHeight: 300),
           ),
-
           SliverPadding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
             sliver: SliverToBoxAdapter(

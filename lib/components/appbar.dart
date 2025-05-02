@@ -115,7 +115,7 @@ class Appbar extends SliverPersistentHeaderDelegate {
   double get maxExtent => expandedHeight;
 
   @override
-  double get minExtent => 180;
+  double get minExtent => 100;
 
   @override
   Widget build(
@@ -141,7 +141,6 @@ class Appbar extends SliverPersistentHeaderDelegate {
               left: 0,
               right: 0,
               bottom: 0,
-
               child: Container(
                 height: expandedCategoriesHeight / 2 + spaceBelowCategories,
                 color: Colors.white,
