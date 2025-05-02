@@ -1,24 +1,15 @@
-import 'package:alibaba/components/defult_appbar.dart';
-import 'package:alibaba/components/navigationbar.dart';
 import 'package:alibaba/theme/font.dart';
 import 'package:flutter/material.dart';
 
 class ProfilePage extends StatelessWidget {
   ProfilePage({super.key});
   final List<Map<String, dynamic>> moreOptions = [
-    {'title': 'خرید خودکار', 'icon': Icons.shopping_cart_outlined},
-    {'title': 'لیست مسافران', 'icon': Icons.people_outline},
-    {'title': 'علاقه‌مندی‌ها', 'icon': Icons.star_border},
-    {'title': 'مرکز پشتیبانی', 'icon': Icons.support_agent},
-    {'title': 'درخواست پشتیبانی', 'icon': Icons.chat_bubble_outline},
-    {
-      'title': 'خروج از حساب کاربری',
-      'icon': Icons.logout,
-      'color': Colors.red,
-      'onTap': () {
-        // TODO: پیاده‌سازی خروج
-      },
-    },
+    {'title': 'خرید خودکار', 'icon': 'assets/icons/calendar.png'},
+    {'title': 'لیست مسافران', 'icon': 'assets/icons/people.png'},
+    {'title': 'علاقه‌مندی‌ها', 'icon': 'assets/icons/star.png'},
+    {'title': 'مرکز پشتیبانی', 'icon': 'assets/icons/question.png'},
+    {'title': 'درخواست پشتیبانی', 'icon': 'assets/icons/support.png'},
+    {'title': 'خروج از حساب کاربری', 'icon': 'assets/icons/exit.png'},
   ];
 
   @override
@@ -41,47 +32,65 @@ class ProfilePage extends StatelessWidget {
                   style: MyFonts.titleLarge.copyWith(letterSpacing: -0.8),
                 ),
               ),
-              SizedBox(height: 15),
+              SizedBox(height: 5),
               User(),
-
-              SizedBox(height: 12),
-
-              // بخش موجودی حساب
-              AccBalance(),
-
-              SizedBox(height: 12),
-
+              SizedBox(height: 10),
+              // موجودی حساب
+              UserBalance(),
+              SizedBox(height: 10),
               // حساب کاربری علی پلاس
               AlibabaPlus(),
-
-              SizedBox(height: 12),
-
-              // لیست گزینه‌های پایینی با ListView.builder
-              Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: ListView.builder(
-                  shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
-                  itemCount: moreOptions.length,
-                  itemBuilder: (context, index) {
-                    final item = moreOptions[index];
-                    return ListTile(
-                      leading: Icon(
-                        item['icon'],
-                        color: item['color'] ?? Colors.black,
-                      ),
-                      title: Text(item['title']),
-                      onTap: item['onTap'],
-                    );
-                  },
-                ),
-              ),
+              SizedBox(height: 10),
+              _BuildContent(moreOptions: moreOptions),
+              SizedBox(height: 15),
+              Text('نسخه 3.154.2', style: MyFonts.titleSmall),
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class _BuildContent extends StatelessWidget {
+  const _BuildContent({required this.moreOptions});
+
+  final List<Map<String, dynamic>> moreOptions;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: Colors.grey.shade300, width: 2),
+      ),
+      child: ListView.builder(
+        shrinkWrap: true,
+        physics: NeverScrollableScrollPhysics(),
+        itemCount: moreOptions.length,
+        itemBuilder: (context, index) {
+          final item = moreOptions[index];
+          return Column(
+            children: [
+              ListTile(
+                leading: Image.asset(
+                  item['icon'],
+                  // 'assets/icons/star.png',
+                  color: Colors.grey.shade600,
+                  width: 20,
+                  height: 20,
+                ),
+                title: Text(item['title'], style: MyFonts.bodySmall),
+              ),
+              if (index < moreOptions.length - 1)
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  child: Divider(height: 0.1, color: Colors.grey.shade300),
+                ),
+            ],
+          );
+        },
       ),
     );
   }
@@ -108,15 +117,15 @@ class AlibabaPlus extends StatelessWidget {
             color: Colors.black,
           ),
           SizedBox(width: 8),
-          Text('حساب کاربری علی‌پلاس'),
+          Text('حساب کاربری علی‌پلاس', style: MyFonts.bodySmall),
         ],
       ),
     );
   }
 }
 
-class AccBalance extends StatelessWidget {
-  const AccBalance({super.key});
+class UserBalance extends StatelessWidget {
+  const UserBalance({super.key});
 
   @override
   Widget build(BuildContext context) {

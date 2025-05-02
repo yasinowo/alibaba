@@ -163,6 +163,7 @@ class _NotificationFilterState extends State<NotificationFilter> {
                           width: 20,
                           height: 20,
                           fit: BoxFit.cover,
+                          color: isSelected ? Colors.blue : Colors.black,
                         )
                         : null,
                 label: Text(widget.filters[index]['text']),
