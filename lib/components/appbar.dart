@@ -25,6 +25,7 @@ class _ExpandedCategories extends StatelessWidget {
         borderRadius: BorderRadius.all(Radius.circular(12)),
         border: Border.all(color: Color.fromRGBO(0, 0, 0, 0.12), width: 1),
       ),
+      clipBehavior: Clip.hardEdge,
       child: GridView.builder(
         shrinkWrap: true,
         physics:
@@ -43,7 +44,6 @@ class _ExpandedCategories extends StatelessWidget {
             child: Container(
               decoration: BoxDecoration(
                 border: Border.all(color: Colors.grey.shade300),
-                borderRadius: BorderRadius.circular(0.0),
               ),
               padding: const EdgeInsets.all(8.0),
               child: Row(
@@ -129,58 +129,62 @@ class Appbar extends SliverPersistentHeaderDelegate {
         0.35; // Adjust this value to control when to show expanded categories
     final bool showExpandedLogo =
         progress <
-        0.30; // Adjust this value to control when to show expanded categories
+        0.15; // Adjust this value to control when to show expanded categories
 
-    return ColoredBox(
-      color: Color(0xffFDB713),
-      child: SafeArea(
-        child: Stack(
-          fit: StackFit.expand,
-          children: [
-            Positioned(
-              left: 0,
-              right: 0,
-              bottom: 0,
-              child: Container(
-                height: expandedCategoriesHeight / 2 + spaceBelowCategories,
-                color: Colors.white,
-              ),
+    return SafeArea(
+      child: Stack(
+        fit: StackFit.expand,
+        children: [
+          Positioned(
+            left: 0,
+            right: 0,
+            bottom: 0,
+            child: Container(
+              height: expandedCategoriesHeight / 2 + spaceBelowCategories,
+              color: Colors.transparent,
             ),
+          ),
+          Positioned(
+            left: 0,
+            right: 0,
+            top: 0,
+            bottom: 100,
+            child: ColoredBox(color: Color(0xffFDB713)),
+          ),
 
-            Positioned(
-              left: 0,
-              right: 0,
-              top: 0,
-              height: 60,
-              child: Container(
-                color: Color(0xffFDB713),
-                child: Align(
-                  alignment: Alignment.topCenter,
-                  child: Image.asset(
-                    'assets/icons/alibaba_logo.png',
-                    height: (showExpandedLogo) ? 50 : 37,
-                    color: Colors.black,
-                  ),
+          Positioned(
+            left: 0,
+            right: 0,
+            top: 0,
+            height: 60,
+            child: Container(
+              color: Color(0xffFDB713),
+              child: Align(
+                alignment: Alignment.topCenter,
+                child: Image.asset(
+                  'assets/icons/alibaba_logo.png',
+                  height: (showExpandedLogo) ? 50 : 37,
+                  color: Colors.black,
                 ),
               ),
             ),
-            if (!showExpandedCategories)
-              Positioned(
-                top: 40,
-                left: 30,
-                right: 30,
-                child: Center(child: const _CollapsedCategories()),
-              ),
-            if (showExpandedCategories)
-              Positioned(
-                top: 30,
-                left: 30,
-                right: 30,
-                bottom: spaceBelowCategories,
-                child: Center(child: const _ExpandedCategories()),
-              ),
-          ],
-        ),
+          ),
+          if (!showExpandedCategories)
+            Positioned(
+              top: 40,
+              left: 30,
+              right: 30,
+              child: Center(child: const _CollapsedCategories()),
+            ),
+          if (showExpandedCategories)
+            Positioned(
+              top: 30,
+              left: 30,
+              right: 30,
+              bottom: spaceBelowCategories,
+              child: Center(child: const _ExpandedCategories()),
+            ),
+        ],
       ),
     );
   }
