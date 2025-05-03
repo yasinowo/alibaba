@@ -1,13 +1,18 @@
-import 'package:alibaba/components/defult_appbar.dart';
 import 'package:alibaba/components/footer.dart';
-import 'package:alibaba/components/navigationbar.dart';
-import 'package:alibaba/screen/home_page.dart';
 import 'package:alibaba/theme/font.dart';
 import 'package:flutter/material.dart';
 
-class PlusPage extends StatelessWidget {
-  PlusPage({super.key});
+class PlusPage extends StatefulWidget {
+  const PlusPage({super.key});
+
+  @override
+  State<PlusPage> createState() => _PlusPageState();
+}
+
+class _PlusPageState extends State<PlusPage> {
   final ScrollController controller = ScrollController();
+  bool _isFabExpanded = true;
+  double lastOffset = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -71,79 +76,98 @@ class PlusPage extends StatelessWidget {
             'موزه آب یزد، که در خانه تاریخی کلاهدوزها قرار دارد، نگاهی جذاب به سیستم...',
       },
     ];
-
     return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
-          controller: controller,
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            // mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              headerPlus(),
-              SizedBox(height: 10),
-              searchImage(),
-              SizedBox(height: 20),
-              MyHorizontalList(),
-              SizedBox(height: 20),
-              Padding(
-                padding: EdgeInsets.only(right: 8),
-                child: Align(
-                  alignment: Alignment.centerRight,
-                  child: Text(
-                    'کرمانشاه;خاک زیرین، میهن فرهاد و شیرین',
-                    style: MyFonts.titleMedium.copyWith(fontSize: 19),
-                    textAlign: TextAlign.right,
-                  ),
-                ),
-              ),
-              SizedBox(height: 10),
-              ReadtravleList(travelData: kermanshah),
-              SizedBox(height: 35),
+      floatingActionButton: MyFloatingActionButton(
+        isFabExpanded: _isFabExpanded,
+      ),
 
-              Padding(
-                padding: EdgeInsets.only(right: 8),
-                child: Align(
-                  alignment: Alignment.centerRight,
-                  child: Text(
-                    'بندرعباس ، مروارید خلیج فارس',
-                    style: MyFonts.titleMedium.copyWith(fontSize: 19),
-                    textAlign: TextAlign.right,
+      body: NotificationListener<ScrollNotification>(
+        onNotification: (scrollNotification) {
+          if (scrollNotification is ScrollUpdateNotification) {
+            final currentOffset = scrollNotification.metrics.pixels;
+            if (currentOffset > lastOffset && _isFabExpanded) {
+              // اسکرول به پایین
+              setState(() => _isFabExpanded = false);
+            } else if (currentOffset < lastOffset && !_isFabExpanded) {
+              // اسکرول به بالا
+              setState(() => _isFabExpanded = true);
+            }
+            lastOffset = currentOffset;
+          }
+          return false;
+        },
+        child: SafeArea(
+          child: SingleChildScrollView(
+            controller: controller,
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              // mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                headerPlus(),
+                SizedBox(height: 10),
+                searchImage(),
+                SizedBox(height: 20),
+                MyHorizontalList(),
+                SizedBox(height: 20),
+                Padding(
+                  padding: EdgeInsets.only(right: 8),
+                  child: Align(
+                    alignment: Alignment.centerRight,
+                    child: Text(
+                      'کرمانشاه;خاک زیرین، میهن فرهاد و شیرین',
+                      style: MyFonts.titleMedium.copyWith(fontSize: 19),
+                      textAlign: TextAlign.right,
+                    ),
                   ),
                 ),
-              ),
-              ReadtravleList(travelData: bandarabbas),
-              SizedBox(height: 30),
-              Padding(
-                padding: EdgeInsets.only(right: 8),
-                child: Align(
-                  alignment: Alignment.centerRight,
-                  child: Text(
-                    'یزد ، شهر قناعت',
-                    style: MyFonts.titleMedium.copyWith(fontSize: 19),
-                    textAlign: TextAlign.right,
+                SizedBox(height: 10),
+                ReadtravleList(travelData: kermanshah),
+                SizedBox(height: 35),
+
+                Padding(
+                  padding: EdgeInsets.only(right: 8),
+                  child: Align(
+                    alignment: Alignment.centerRight,
+                    child: Text(
+                      'بندرعباس ، مروارید خلیج فارس',
+                      style: MyFonts.titleMedium.copyWith(fontSize: 19),
+                      textAlign: TextAlign.right,
+                    ),
                   ),
                 ),
-              ),
-              ReadtravleList(travelData: yazd),
-              Padding(
-                padding: EdgeInsets.only(right: 8),
-                child: Align(
-                  alignment: Alignment.centerRight,
-                  child: Text(
-                    'کرمانشاه;خاک زیرین، میهن فرهاد و شیرین',
-                    style: MyFonts.titleMedium.copyWith(fontSize: 19),
-                    textAlign: TextAlign.right,
+                ReadtravleList(travelData: bandarabbas),
+                SizedBox(height: 30),
+                Padding(
+                  padding: EdgeInsets.only(right: 8),
+                  child: Align(
+                    alignment: Alignment.centerRight,
+                    child: Text(
+                      'یزد ، شهر قناعت',
+                      style: MyFonts.titleMedium.copyWith(fontSize: 19),
+                      textAlign: TextAlign.right,
+                    ),
                   ),
                 ),
-              ),
-              SizedBox(height: 10),
-              ReadtravleList(travelData: kermanshah),
-              SizedBox(height: 35),
-              Divider(),
-              FooterSection(),
-            ],
+                ReadtravleList(travelData: yazd),
+                Padding(
+                  padding: EdgeInsets.only(right: 8),
+                  child: Align(
+                    alignment: Alignment.centerRight,
+                    child: Text(
+                      'کرمانشاه;خاک زیرین، میهن فرهاد و شیرین',
+                      style: MyFonts.titleMedium.copyWith(fontSize: 19),
+                      textAlign: TextAlign.right,
+                    ),
+                  ),
+                ),
+                SizedBox(height: 10),
+                ReadtravleList(travelData: kermanshah),
+                SizedBox(height: 35),
+                Divider(),
+                FooterSection(),
+              ],
+            ),
           ),
         ),
       ),
@@ -202,6 +226,61 @@ class PlusPage extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+class MyFloatingActionButton extends StatelessWidget {
+  const MyFloatingActionButton({super.key, required bool isFabExpanded})
+    : _isFabExpanded = isFabExpanded;
+
+  final bool _isFabExpanded;
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedSwitcher(
+      duration: Duration(milliseconds: 300),
+      switchInCurve: Curves.easeOutBack,
+      switchOutCurve: Curves.easeInBack,
+      transitionBuilder: (child, animation) {
+        return ScaleTransition(scale: animation, child: child);
+      },
+      child:
+          _isFabExpanded
+              ? FloatingActionButton.extended(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(45),
+                ),
+                key: ValueKey('extended'),
+                onPressed: () {},
+                label: Text(
+                  'اشتراک تجربه',
+                  style: MyFonts.bodyMedium.copyWith(color: Colors.white),
+                ),
+                icon: Image.asset(
+                  'assets/icons/comment.png',
+                  width: 30,
+                  height: 30,
+                  color: Colors.white,
+                ),
+
+                backgroundColor: const Color.fromARGB(255, 56, 165, 255),
+              )
+              // ignore: dead_code
+              : FloatingActionButton(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(45),
+                ),
+                key: ValueKey('iconOnly'),
+                onPressed: () {},
+                backgroundColor: Colors.blue,
+                child: Image.asset(
+                  'assets/icons/comment.png',
+                  width: 30,
+                  height: 30,
+                  color: Colors.white,
+                ),
+              ),
     );
   }
 }
