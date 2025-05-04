@@ -87,6 +87,7 @@ class _PlusPageState extends State<PlusPage> {
             final currentOffset = scrollNotification.metrics.pixels;
             if (currentOffset > lastOffset && _isFabExpanded) {
               // اسکرول به پایین
+
               setState(() => _isFabExpanded = false);
             } else if (currentOffset < lastOffset && !_isFabExpanded) {
               // اسکرول به بالا
@@ -249,7 +250,7 @@ class MyFloatingActionButton extends StatelessWidget {
           _isFabExpanded
               ? FloatingActionButton.extended(
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(45),
+                  borderRadius: BorderRadius.circular(50),
                 ),
                 key: ValueKey('extended'),
                 onPressed: () {},
@@ -263,13 +264,12 @@ class MyFloatingActionButton extends StatelessWidget {
                   height: 30,
                   color: Colors.white,
                 ),
-
                 backgroundColor: const Color.fromARGB(255, 56, 165, 255),
               )
               // ignore: dead_code
               : FloatingActionButton(
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(45),
+                  borderRadius: BorderRadius.circular(50),
                 ),
                 key: ValueKey('iconOnly'),
                 onPressed: () {},

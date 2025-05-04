@@ -91,39 +91,6 @@ class HomePage extends StatelessWidget {
       ),
     );
   }
-
-  // Row iconContent() {
-  //   return Row(
-  //     children: [
-  //       Container(
-  //         decoration: BoxDecoration(
-  //           color: Colors.white10,
-  //           borderRadius: BorderRadius.all(Radius.circular(12)),
-  //         ),
-  //         padding: EdgeInsets.symmetric(horizontal: 34, vertical: 12),
-  //         child: Icon(Icons.menu),
-  //       ),
-  //       SizedBox(width: 4),
-  //       Container(
-  //         decoration: BoxDecoration(
-  //           color: Colors.white10,
-  //           borderRadius: BorderRadius.all(Radius.circular(12)),
-  //         ),
-  //         padding: EdgeInsets.symmetric(horizontal: 34, vertical: 12),
-  //         child: Icon(Icons.person),
-  //       ),
-  //       SizedBox(width: 4),
-  //       Container(
-  //         decoration: BoxDecoration(
-  //           color: Colors.white10,
-  //           borderRadius: BorderRadius.all(Radius.circular(12)),
-  //         ),
-  //         padding: EdgeInsets.symmetric(horizontal: 34, vertical: 12),
-  //         child: Icon(Icons.message),
-  //       ),
-  //     ],
-  //   );
-  // }
 }
 
 class OtherServicesContent extends StatelessWidget {
@@ -197,7 +164,20 @@ class OtherServicesContent extends StatelessWidget {
                     ),
                     width: 60.0,
                     height: 60.0,
-                    child: Center(child: Image.asset('assets/icons/cart.png')),
+                    child: Stack(
+                      children: [
+                        Image.asset('assets/icons/cart.png'),
+                        Positioned(
+                          top: 0,
+                          left: 0,
+                          child: Image.asset(
+                            'assets/icons/new.png',
+                            width: 40,
+                            height: 40,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                   SizedBox(height: 8.0),
                   Text('سفر اقتصادی', style: MyFonts.displaySmall),

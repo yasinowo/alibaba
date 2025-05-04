@@ -70,7 +70,7 @@ class _MainScreenState extends State<MainScreen> {
         duration: Duration(milliseconds: 300),
         height: _isNavBarVisible ? kBottomNavigationBarHeight : 0,
         child: Wrap(
-          // جلوگیری از overflow زمانی که height صفره
+          // جلوگیری از overflow
           children: [
             MyNavigationBar(currentIndex: _currentIndex, onTap: _onTabTapped),
           ],
