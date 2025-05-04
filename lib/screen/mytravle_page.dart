@@ -1,5 +1,3 @@
-import 'package:alibaba/components/defult_appbar.dart';
-import 'package:alibaba/components/navigationbar.dart';
 import 'package:alibaba/theme/font.dart';
 import 'package:flutter/material.dart';
 
