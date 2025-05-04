@@ -77,8 +77,9 @@ class _PlusPageState extends State<PlusPage> {
       },
     ];
     return Scaffold(
-      floatingActionButton: MyFloatingActionButton(
-        isFabExpanded: _isFabExpanded,
+      floatingActionButton: Directionality(
+        textDirection: TextDirection.rtl,
+        child: MyFloatingActionButton(isFabExpanded: _isFabExpanded),
       ),
 
       body: NotificationListener<ScrollNotification>(
@@ -125,7 +126,6 @@ class _PlusPageState extends State<PlusPage> {
                 SizedBox(height: 10),
                 ReadtravleList(travelData: kermanshah),
                 SizedBox(height: 35),
-
                 Padding(
                   padding: EdgeInsets.only(right: 8),
                   child: Align(
