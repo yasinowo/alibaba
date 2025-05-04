@@ -1,8 +1,3 @@
-import 'package:alibaba/screen/home_page.dart';
-import 'package:alibaba/screen/mytravle_page.dart';
-import 'package:alibaba/screen/notifications_page.dart';
-import 'package:alibaba/screen/plus_page.dart';
-import 'package:alibaba/screen/profile_page.dart';
 import 'package:alibaba/theme/font.dart';
 import 'package:flutter/material.dart';
 
