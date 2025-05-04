@@ -1,4 +1,4 @@
-import 'package:alibaba/theme/font.dart';
+import 'package:alibaba/font/font.dart';
 import 'package:flutter/material.dart';
 
 const expandedCategoriesHeight = 160.0;
@@ -10,7 +10,7 @@ final List<Map<String, dynamic>> navigationItems = [
   {'text': 'هتل', 'icon': 'assets/icons/hotel.png'},
   {'text': 'اتوبوس', 'icon': 'assets/icons/bus.png'},
   {'text': 'ویلا و اقامتگاه', 'icon': 'assets/icons/vila.png'},
-  {'text': 'تور', 'icon': 'assets/icons/tor.png'},
+  {'text': 'تور', 'icon': 'assets/icons/toor.png'},
 ];
 
 class _ExpandedCategories extends StatelessWidget {

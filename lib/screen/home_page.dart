@@ -1,7 +1,7 @@
 import 'package:alibaba/components/appbar.dart';
 import 'package:alibaba/components/banner.dart';
 import 'package:alibaba/components/footer.dart';
-import 'package:alibaba/theme/font.dart';
+import 'package:alibaba/font/font.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -157,27 +157,27 @@ class OtherServicesContent extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
-                  Container(
-                    decoration: BoxDecoration(
-                      color: Colors.grey.withAlpha(50),
-                      borderRadius: BorderRadius.all(Radius.circular(12)),
-                    ),
-                    width: 60.0,
-                    height: 60.0,
-                    child: Stack(
-                      children: [
-                        Image.asset('assets/icons/cart.png'),
-                        Positioned(
-                          top: 0,
-                          left: 0,
-                          child: Image.asset(
-                            'assets/icons/new.png',
-                            width: 40,
-                            height: 40,
-                          ),
+                  Stack(
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                          color: Colors.grey.withAlpha(50),
+                          borderRadius: BorderRadius.all(Radius.circular(12)),
                         ),
-                      ],
-                    ),
+                        width: 60.0,
+                        height: 60.0,
+                        child: Image.asset('assets/icons/cart.png'),
+                      ),
+                      Positioned(
+                        top: 0,
+                        left: 3,
+                        child: Image.asset(
+                          'assets/icons/new.png',
+                          width: 35,
+                          height: 32,
+                        ),
+                      ),
+                    ],
                   ),
                   SizedBox(height: 8.0),
                   Text('سفر اقتصادی', style: MyFonts.displaySmall),
@@ -254,7 +254,7 @@ class FooterIcon extends StatelessWidget {
                   SizedBox(
                     width: 70,
                     height: 70,
-                    child: Image.asset('assets/icons/platform.png'),
+                    child: Image.asset('assets/icons/platform2.png'),
                   ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,

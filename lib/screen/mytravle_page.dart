@@ -1,4 +1,4 @@
-import 'package:alibaba/theme/font.dart';
+import 'package:alibaba/font/font.dart';
 import 'package:flutter/material.dart';
 
 class MytravlePage extends StatelessWidget {
