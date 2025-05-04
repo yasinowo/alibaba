@@ -71,9 +71,12 @@ class _NotificationsPageState extends State<NotificationsPage> {
               ),
             ),
             SizedBox(height: 15),
-            NotificationFilter(
-              filters: filters,
-              onFilterSelected: _handleFilterSelected,
+            Directionality(
+              textDirection: TextDirection.rtl,
+              child: NotificationFilter(
+                filters: filters,
+                onFilterSelected: _handleFilterSelected,
+              ),
             ),
             SizedBox(height: 80),
             Image.asset(

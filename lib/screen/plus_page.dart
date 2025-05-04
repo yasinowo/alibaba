@@ -111,7 +111,10 @@ class _PlusPageState extends State<PlusPage> {
                 SizedBox(height: 10),
                 searchImage(),
                 SizedBox(height: 20),
-                MyHorizontalList(),
+                Directionality(
+                  textDirection: TextDirection.rtl,
+                  child: MyFilterList(),
+                ),
                 SizedBox(height: 20),
                 Padding(
                   padding: EdgeInsets.only(right: 8),
@@ -309,7 +312,7 @@ readTravleList(List<Map<String, String>> travelData) {
   );
 }
 
-class MyHorizontalList extends StatelessWidget {
+class MyFilterList extends StatelessWidget {
   final List<Map<String, dynamic>> items = [
     {'text': 'اقامت و هتل', 'icon': 'assets/icons/home2.png'},
     {'text': 'بازار و خرید', 'icon': 'assets/icons/store.png'},
@@ -319,58 +322,54 @@ class MyHorizontalList extends StatelessWidget {
     // می‌توانید آیتم‌های بیشتری اضافه کنید
   ];
 
-  MyHorizontalList({super.key});
+  MyFilterList({super.key});
 
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
-      child: Directionality(
-        textDirection: TextDirection.rtl,
-        child: Row(
-          children:
-              items.map((item) {
-                return Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20.0), // شکل کپسولی
-                      border: Border.all(color: Colors.grey.shade300),
+      child: Row(
+        children:
+            items.map((item) {
+              return Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20.0), // شکل کپسولی
+                    border: Border.all(color: Colors.grey.shade300),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 16.0,
+                      vertical: 8.0,
                     ),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 16.0,
-                        vertical: 8.0,
-                      ),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: <Widget>[
-                          Image.asset(
-                            item['icon'],
-                            width: 26,
-                            height: 26,
-                            color:
-                                (item['icon'] == 'assets/icons/home2.png' ||
-                                        item['icon'] ==
-                                            'assets/icons/store.png')
-                                    ? Colors.blueGrey
-                                    : null,
-                            fit: BoxFit.contain,
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        Image.asset(
+                          item['icon'],
+                          width: 26,
+                          height: 26,
+                          color:
+                              (item['icon'] == 'assets/icons/home2.png' ||
+                                      item['icon'] == 'assets/icons/store.png')
+                                  ? Colors.blueGrey
+                                  : null,
+                          fit: BoxFit.contain,
+                        ),
+                        SizedBox(width: 8.0),
+                        Text(
+                          item['text'],
+                          style: MyFonts.bodyMedium.copyWith(
+                            color: Colors.blueGrey,
                           ),
-                          SizedBox(width: 8.0),
-                          Text(
-                            item['text'],
-                            style: MyFonts.bodyMedium.copyWith(
-                              color: Colors.blueGrey,
-                            ),
-                          ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
-                );
-              }).toList(),
-        ),
+                ),
+              );
+            }).toList(),
       ),
     );
   }
